@@ -19,7 +19,7 @@ export class AppComponent
   {
   	this._tokenService.init({
   		//apiBase: "http://localhost:4000",
-      apiBase: "/",
+      apiBase: "http://swrpgapi.rubywebs.net",
   		signInRedirect: "/player-login"
   		});
   	}
