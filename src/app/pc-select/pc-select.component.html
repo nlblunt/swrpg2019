@@ -1,0 +1,21 @@
+<div *ngIf="pcSelected === false" fxLayout="row">
+    <mat-card fxFlex="33" *ngFor='let pc of allPcs'>
+        <mat-card-header>
+            <mat-card-title>{{pc.name}}</mat-card-title>
+            <mat-card-subtitle>{{pc.career_name}}</mat-card-subtitle>
+        </mat-card-header>
+        <hr>
+        <mat-card-content>
+            <img class="card-background-image" src="../assets/imperial_logo.jpg">
+            Race: {{pc.race_name}}<br>
+            Health: {{pc.wounds_current}} / {{pc.wounds_thresh}}<br>
+            Strain: {{pc.strain_current}} / {{pc.strain_thresh}}<br>
+            XP: {{pc.xp}}<br>
+            Credits: {{pc.credits}}
+        </mat-card-content>
+
+        <mat-card-actions>
+            <button class='btn btn-outline-dark' (click)='selectPc(pc)'>{{pc.name}}'s Destiny Awaits</button>
+        </mat-card-actions>
+    </mat-card>
+</div>

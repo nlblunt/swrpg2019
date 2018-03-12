@@ -1,0 +1,286 @@
+<body id="pcView">
+<div class="container-fluid" id="characterselected">
+    <img src="/assets/imperial_logo.jpg" (click)="togglePcNavMenu()" class="nav-icon">
+    <h5>Menu</h5>
+    <h5><a href routerLink="/player"> Exit </a></h5>
+    <div>
+    	<ul id="character-nav" class="{{pcNavClass}}">
+    		<li>
+                <img class="pc-nav" (click)="setPcViewStage('overview')" src="/assets/pc/pc_overview.png">      
+            </li>
+    		<li>
+                <img class="pc-nav" (click)="setPcViewStage('skills')" src="/assets/pc/pc_skills.png">
+            </li>
+    		<li>
+                <img class="pc-nav" (click)="setPcViewStage('equipment')" src="/assets/pc/pc_gear.png">
+            </li>
+    		<li>
+                <img class="pc-nav" (click)="setPcViewStage('combat')" src="/assets/pc/pc_combat.png">
+            </li>
+    	</ul>
+    </div>
+    
+    <!-- Character Over Section -->
+<div id="character_overview" *ngIf="pcViewStage === 'overview'">
+    <section class="pc-section">
+        <img [src]=selectedPc.avatar class="pc-avatar">
+        <h2 class="heading">{{selectedPc.name}}</h2>
+        <section class="pc-overview-section">
+            <p>Race: {{selectedPc.race_name}}</p>
+            <p>Career: {{selectedPc.career_name}}</p>
+            <p>XP: {{selectedPc.xp}}</p>
+            <p>Credits: {{selectedPc.credits}}</p>
+        </section>
+        <section class="pc-overview-section">
+            <p>Obligation: N/A</p>
+            <p>Duty: N/A</p>
+            <p>Force Balance: N/A</p>
+        </section>
+    </section>
+    
+    <section class="pc-section">
+    <h2 class="heading">HEALTH</h2>
+    <table class="table">
+        <tr>
+            <td>Strain</td>
+            <td class="emphasis">{{selectedPc.strain_current}} / {{selectedPc.strain_thresh}}</td>
+            <td>Soak</td>
+            <td class="emphasis">{{selectedPc.brawn}}</td> <!-- + armor[0].soak}}</td> -->
+        </tr>
+        <tr>
+            <td>Wounds</td>
+            <td class="emphasis">{{selectedPc.wounds_current}} / {{selectedPc.wounds_thresh}}</td>
+            <td>Defence</td>
+            <td class="emphasis"><!--{{0 + armor[0].soak}} --></td>
+        </tr>
+    </table>
+    </section>
+
+    <section class="pc-section">
+    <h2 class="heading">ATTRIBUTES</h2>
+    <table class="table">
+        <tr>
+            <td>Agility</td>
+            <td class="emphasis">{{selectedPc.agility}}</td>
+            <td>Brawn</td>
+            <td class="emphasis">{{selectedPc.brawn}}</td>
+            <td>Cunning</td>
+            <td class="emphasis">{{selectedPc.cunning}}</td>
+
+        </tr>
+        <tr>
+            <td>Intellect</td>
+            <td class="emphasis">{{selectedPc.intellect}}</td>
+            <td>Presence</td>
+            <td class="emphasis">{{selectedPc.presence}}</td>
+            <td>Willpower</td>
+            <td class="emphasis">{{selectedPc.willpower}}</td>
+        </tr>
+    </table>
+    </section>
+</div>
+
+<!-- Character Skills -->
+<div id="character_skills" *ngIf="pcViewStage === 'skills'">
+    <div class="col-sm-12">
+    <section class="pc-section">
+    <table class="table">
+        <tr>
+            <td class="heading">Skill</td>
+            <td class="heading">Attribute</td>
+            <td class="heading text-right">Rank</td>
+            <td class="heading text-right">Career</td>
+            <td class="heading text-right">Dice</td>
+        </tr>
+            <tr *ngFor="let skill of selectedPc.skills" >
+                <td>{{skill.name}}</td>
+                <td>{{skill.attrib}}</td>
+                <td class="text-right emphasis">{{skill.rank}}</td>
+                <td class="text-right emphasis" *ngIf="skill.career === true">*</td>
+                <td *ngIf="skill.career === false"></td>
+                <td>
+                    <div class="float-right" *ngFor="let die of skill.dice">
+                        <img class="dice" src="assets/{{die}}" />
+                    </div>
+                </td>
+            </tr>
+    </table>
+    </section>
+    </div>
+</div>
+
+<!-- Character Equipment -->
+<div id="character_equipment" *ngIf="pcViewStage === 'equipment'">
+    <section class="pc-section">
+    <h2 class="heading">WEAPONS</h2>
+    <table class="table table-stripped">
+    	<thead>
+    		<tr>
+    			<td>Name</td>
+    			<td>Skill</td>
+    			<td>Damage</td>
+    			<td>Critical</td>
+    			<td>Range</td>
+    			<td>Price</td>
+    			<td>Special</td>
+    		</tr>
+    	</thead>
+    	<tbody>
+    		<tr *ngFor="let w of selectedPc.weapons">
+    			<td class="emphasis">{{w.name}}</td>
+    			<td>{{w.skill}}</td>
+    			<td>{{w.damage}}</td>
+    			<td>{{w.critical}}</td>
+    			<td>{{w.range}}</td>
+    			<td>{{w.price}}</td>
+    			<td>{{w.special}}</td>
+    		</tr>
+    	</tbody>
+    </table>
+    </section>
+
+    <section class="pc-section">
+    <h2 class="heading">ARMOR</h2>
+    <table class="table table-stripped">
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Soak</td>
+                <td>Defense</td>
+                <td>Price</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let a of selectedPc.armors">
+                <td class="emphasis">{{a.name}}</td>
+                <td>{{a.soak}}</td>
+                <td>{{a.defense}}</td>
+                <td>{{a.price}}</td>
+            </tr>
+        </tbody>
+    </table>
+    </section>
+
+    <section class="pc-section">
+    <h2 class="heading">ITEMS</h2>
+    <table class="table table-stripped">
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Description</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let i of selectedPc.items">
+                <td class="emphasis">{{i.name}}</td>
+                <td>{{i.description}}</td>
+            </tr>
+        </tbody>
+    </table>
+    </section>
+</div>
+
+<!-- Character Combat -->
+<div id="character_combat" *ngIf="pcViewStage === 'combat'">
+    <div class="row">
+        <div class="col-sm-6">
+            <section class="pc-section">
+                <h2 class="heading">COMBAT STATS</h2>
+                <table class="table">
+                    <tr>
+                        <td>Strain</td>
+                        <td class="emphasis">{{selectedPc.strain_current}} / {{selectedPc.strain_thresh}}</td>
+                        <td>Soak</td>
+                        <!-- <td *ngIf="selectedPc.name === 'test'" class="emphasis">{{selectedPc.brawn + selectedPc.armors[0].soak}}</td> -->
+                        <td *ngIf="selectedPc.armors.length === 0">{{selectedPc.brawn}}</td>
+                        <td *ngIf="selectedPc.armors.length > 0">{{selectedPc.brawn + selectedPc.armors[0].soak}}</td>
+                    </tr>
+                    <tr>
+                        <td>Wounds</td>
+                        <td class="emphasis">{{selectedPc.wounds_current}} / {{selectedPc.wounds_thresh}}</td>
+                        <td>Defence</td>
+                        <td *ngIf="selectedPc.armors.length > 0" class="emphasis">{{selectedPc.armors[0].defense}}</td>
+                        <td *ngIf="selectedPc.armors.length === 0">0</td>
+                    </tr>
+                </table>
+            </section>
+
+            <section class="pc-section">
+                <h2 class="heading">ITEMS</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let i of selectedPc.items">
+                            <td class="emphasis">{{i.name}}</td>
+                            <td>{{i.description}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+        
+        <div class="col-sm-6">
+            <section class="pc-section">
+                <h2 class="heading">WEAPONS</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Skill</td>
+                            <td>Damage</td>
+                            <td>Critical</td>
+                            <td>Range</td>
+                            <td>Special</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let w of selectedPc.weapons">
+                            <td class="emphasis">{{w.name}}</td>
+                            <td>{{w.skill}}<br>
+                               <div>
+                                    <div *ngFor="let die of w.dice">
+                                        <img class="micro-dice" src="assets/{{die}}" />
+                                    </div>
+                                </div>
+                            </td>
+                            
+                            <td>{{w.damage}}</td>
+                            <td>{{w.critical}}</td>
+                            <td>{{w.range}}</td>
+                            <td>{{w.special}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            
+                        <section class="pc-section">
+                <h2 class="heading">ARMOR</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Soak</td>
+                            <td>Defence</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let a of selectedPc.armors">
+                            <td class="emphasis">{{a.name}}</td>
+                            <td>{{a.soak}}</td>
+                            <td>{{a.defense}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </div>
+</div>
+
+</div>
+
+</body>

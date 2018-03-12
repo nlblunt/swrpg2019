@@ -1,0 +1,37 @@
+body
+{
+    background-color: #F5F5F5;
+}
+
+table
+{
+    font-size: 10px;
+}
+
+.selection
+{
+    background-color: white;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.heading
+{
+    color: rgb(169, 69, 68);
+    font-family: 'STARWARS', sans-serif;
+}
+
+.emphasis
+{
+    color: rgb(160, 60, 68);
+    font-weight: bold;
+}
+
+.btn-increase
+{
+	color: green;
+	border: solid 1px green;
+	border-radius: 10px;
+	background-color: greenyellow;
+	float: right;
+}

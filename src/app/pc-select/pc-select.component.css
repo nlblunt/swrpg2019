@@ -1,0 +1,11 @@
+.card-background-image
+{
+	float: right;
+	width: 25%;
+}
+
+button
+{
+    color: rgb(169, 69, 68);
+    font-family: 'STARWARS', sans-serif;
+}
