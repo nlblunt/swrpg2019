@@ -1,5 +1,5 @@
 <div>
-	<form class="form-control-group" fxLayout="column" fxLayoutAlign="center" fxFlex.md="30" fxFlexOffset.md="35" fxFlexOffset ="15" fxFlex="70">
+	<form *ngIf="!registering" class="form-control-group" fxLayout="column" fxLayoutAlign="center" fxFlex.md="30" fxFlexOffset.md="35" fxFlexOffset ="15" fxFlex="70">
 		<h3 class="text-center" *ngIf="error">{{error}}</h3>
   		<mat-form-field class="form-control">
   		<input [(ngModel)]="login.email" name="email" matInput placeholder="Email" required>
@@ -12,6 +12,31 @@
 	
 	  	<button class="btn btn-outline-primary" (click)="playerSignIn()">Sign In</button>
 	  	<p>or</p>
+	  	<button class="btn btn-outline-primary" (click)="startRegister()">Register</button>
+	</form>
+
+	<form *ngIf="registering" class="form-control-group" fxLayout="column" fxLayoutAlign="center" fxFlex.md="30" fxFlexOffset.md="35" fxFlexOffset ="15" fxFlex="70">
+		<h3 class="text-center" *ngIf="error">{{error}}</h3>
+  		<mat-form-field class="form-control">
+  		<input [(ngModel)]="login.email" name="email" matInput placeholder="Email" required>
+  		</mat-form-field>
+
+  		<mat-form-field class="form-control">
+  		<input [(ngModel)]="login.password" name="password" matInput placeholder="Password" type="password" required>
+  		</mat-form-field>
+	
+	  	<mat-form-field class="form-control">
+  		<input [(ngModel)]="login.password_confirmation" name="password_confirmation" matInput placeholder="Password Confirmation" type="password" required>
+  		</mat-form-field>
+
+  		<mat-form-field class="form-control">
+  		<input [(ngModel)]="login.nickname" name="nickname" matInput placeholder="Nickname">
+  		</mat-form-field>
+
+  		<mat-form-field class="form-control">
+  		<input [(ngModel)]="login.name" name="name" matInput placeholder="Name">
+  		</mat-form-field>
+
 	  	<button class="btn btn-outline-primary" (click)="playerRegister()">Register</button>
 	</form>
 </div>

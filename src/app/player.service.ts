@@ -7,15 +7,6 @@ export class PlayerService {
 
   constructor(private _tokenService2: Angular2TokenService)
   {
-  	
-  	this._tokenService2.init({
-  		apiBase: "localhost:4000",
-  		signInRedirect: "home",
-  		userTypes: [{name: 'PLAYER', path: 'player'}, {name: 'GM', path: 'gm'}]
-  	});
 
-  	this._tokenService = this._tokenService2;
   }
-
-
 }

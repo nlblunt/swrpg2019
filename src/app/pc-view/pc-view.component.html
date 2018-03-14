@@ -45,13 +45,15 @@
             <td>Strain</td>
             <td class="emphasis">{{selectedPc.strain_current}} / {{selectedPc.strain_thresh}}</td>
             <td>Soak</td>
-            <td class="emphasis">{{selectedPc.brawn}}</td> <!-- + armor[0].soak}}</td> -->
+            <td *ngIf="selectedPc.armors.length > 0" class="emphasis">{{selectedPc.brawn + selectedPc.armors[0].soak}}</td>
+            <td *ngIf="selectedPc.armors.length === 0">{{selectedPc.brawn}}</td>
         </tr>
         <tr>
             <td>Wounds</td>
             <td class="emphasis">{{selectedPc.wounds_current}} / {{selectedPc.wounds_thresh}}</td>
             <td>Defence</td>
-            <td class="emphasis"><!--{{0 + armor[0].soak}} --></td>
+            <td *ngIf="selectedPc.armors.length > 0" class="emphasis">{{selectedPc.armors[0].defense}}</td>
+            <td *ngIf="selectedPc.armors.length === 0">0</td>
         </tr>
     </table>
     </section>

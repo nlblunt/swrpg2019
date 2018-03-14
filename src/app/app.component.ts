@@ -12,7 +12,7 @@ import { PlayerService } from './player.service';
 
 export class AppComponent 
 {
-  title = 'app';
+  title = 'SWRPG';
 
   //Initialize Angular2TokenService
   constructor(private _tokenService: Angular2TokenService)

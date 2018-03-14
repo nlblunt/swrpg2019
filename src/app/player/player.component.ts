@@ -18,8 +18,13 @@ export class PlayerComponent implements OnInit {
   ngOnInit()
   {
   	console.log("Player Component");
-    this._tokenService.validateToken();
-    this.currentPlayer = this._tokenService.currentUserData;
+    console.log(this._tokenService.currentAuthData)
+    
+    this._tokenService.validateToken().subscribe(
+      res=> this.currentPlayer = this._tokenService.currentUserData,
+      error=> console.log(error)
+      )
+    //this.currentPlayer = this._tokenService.currentUserData;
   }
 
   playerSignOut()

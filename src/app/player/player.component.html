@@ -4,7 +4,7 @@
 	    <h6 class="text-center"><a href (click)="playerSignOut()">Log Out</a></h6>
 		<h4 class="text-center"><a routerLink='/player/pc-create'>+ New Character +</a></h4>
 		
-		<pc-select></pc-select>
+		<pc-select *ngIf="currentPlayer != null"></pc-select>
 	    
 	</div>
 </body>

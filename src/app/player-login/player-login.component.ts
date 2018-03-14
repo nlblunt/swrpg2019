@@ -18,6 +18,7 @@ import { PlayerService } from '../player.service';
 export class PlayerLoginComponent implements OnInit {
   login: any = {};
   error: string;
+  registering: boolean = false;
 
   constructor(private _tokenService: Angular2TokenService, private router: Router)
   {
@@ -28,6 +29,11 @@ export class PlayerLoginComponent implements OnInit {
   {
   }
 
+  startRegister()
+  {
+    this.registering = true;
+  }
+  
   playerSignIn()
   {
     //Sign in.  If successful, redirect back to home.  If error, display error message
@@ -41,7 +47,11 @@ export class PlayerLoginComponent implements OnInit {
   	this._tokenService.registerAccount({
   		email: this.login.email,
   		password: this.login.password,
-  		passwordConfirmation: this.login.password
-  	})
+  		passwordConfirmation: this.login.password_confirmation,
+      name: this.login.name,
+      nickname: this.login.nickname
+  	}).subscribe(
+      res=> this.router.navigateByUrl('/home'),
+      error=> this.error = "Error registering account.")
   }
 }
