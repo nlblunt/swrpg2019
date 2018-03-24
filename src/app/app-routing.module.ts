@@ -10,6 +10,9 @@ import { PlayerLoginComponent } from './player-login/player-login.component';
 import { PcCreateComponent } from './pc-create/pc-create.component';
 import { PcViewComponent } from './pc-view/pc-view.component'
 
+import { GmComponent } from './gm/gm.component';
+import { GmViewEditPcsComponent } from './gm-view-edit-pcs/gm-view-edit-pcs.component';
+
 //Import SERVICES
 import { Angular2TokenService } from 'angular2-token';
 import { PlayerService } from './player.service';
@@ -37,6 +40,8 @@ const routes: Routes = [
   { path: 'player-login', component: PlayerLoginComponent },
   { path: 'player/pc-create', component: PcCreateComponent },
   { path: 'player/pc-view', component: PcViewComponent },
+  { path: 'gm', component: GmComponent, canActivate: [Angular2TokenService] },
+  { path: 'gm-view-edit-pcs', component: GmViewEditPcsComponent },
   //{ path: 'gm', component: GMComponent, canActivate: [GMAuthGuard]},
   //{ path: 'gm-login', component: GMLoginComponent},
   //{ path: 'gm/gm-view', component: GMViewComponent },

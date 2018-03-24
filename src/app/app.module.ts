@@ -16,11 +16,18 @@ import { PcSelectComponent } from './pc-select/pc-select.component';
 import { PcCreateComponent } from './pc-create/pc-create.component';
 import { PcViewComponent } from './pc-view/pc-view.component';
 
+//Import GM COMPONENTS
+import { GmComponent } from './gm/gm.component';
+import { GmViewEditPcsComponent } from './gm-view-edit-pcs/gm-view-edit-pcs.component';
+
 //Import PC SERVICES
 import { PlayerService } from './player.service';
 import { PcSelectService } from './pc-select/pc-select.service';
 import { PcCreateService } from './pc-create/pc-create.service';
 import { PcViewService } from './pc-view/pc-view.service';
+
+//Import GM SERVICES
+import { GmService } from './gm.service';
 
 //Import MATERIAL
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -28,6 +35,9 @@ import { MatInputModule } from '@angular/material';
 import { MatSelectModule } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button'
+import { MatSidenavModule } from '@angular/material/sidenav'
 
 @NgModule({
   declarations: [
@@ -37,7 +47,9 @@ import { MatCardModule } from '@angular/material/card';
     HomeComponent,
     PcSelectComponent,
     PcCreateComponent,
-    PcViewComponent
+    PcViewComponent,
+    GmComponent,
+    GmViewEditPcsComponent
   ],
   imports: [
     BrowserModule,
@@ -50,14 +62,18 @@ import { MatCardModule } from '@angular/material/card';
     MatInputModule,
     MatSelectModule,
     MatFormFieldModule,
-    MatCardModule
+    MatCardModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatSidenavModule
   ],
   providers: [
     Angular2TokenService,
     PlayerService,
     PcSelectService,
     PcCreateService,
-    PcViewService
+    PcViewService,
+    GmService
   ],
   bootstrap: [AppComponent]
 })

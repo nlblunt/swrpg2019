@@ -1,0 +1,15 @@
+<div>
+	<button mat-button color="warn" [matMenuTriggerFor]="pcs">Player Characters</button>
+	<mat-menu #pcs="matMenu">
+		<button color="accent" mat-button (click)="setDisplay('viewEditPcs')">List Characters</button>
+	</mat-menu>
+
+	<button mat-button color="warn" [matMenuTriggerFor]="npcs">NPCs</button>
+	<mat-menu #npcs="matMenu">
+		<div mat-menu-item><button color="accent" mat-button>Minion Groups</button></div>
+		<div mat-menu-item><button color="accent" mat-button>Grunts</button></div>
+		<div mat-menu-item><button color="accent" mat-button>Nemesis</button></div>
+	</mat-menu>
+
+	<app-gm-view-edit-pcs *ngIf="gmService.display === 'viewEditPcs'"></app-gm-view-edit-pcs>
+</div>

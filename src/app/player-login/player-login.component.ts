@@ -51,7 +51,11 @@ export class PlayerLoginComponent implements OnInit {
       name: this.login.name,
       nickname: this.login.nickname
   	}).subscribe(
-      res=> this.router.navigateByUrl('/home'),
+      res=> 
+      {
+        this._tokenService.post("/update_user_info", {name: this.login.name, nickname: this.login.nickname});
+        this.router.navigateByUrl('/home');
+      },
       error=> this.error = "Error registering account.")
   }
 }

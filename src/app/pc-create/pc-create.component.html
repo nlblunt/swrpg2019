@@ -1,38 +1,38 @@
 <body>
 <!-- Stage 1 of character creation -->
-<div *ngIf="pcCreateStage==='pcStage1'" fxLayout="row">
-    <div fxFlex="50" fxFlexOffset="25" >
-    <h3 class="text-center heading">CREATE A NEW CHARACTER</h3>
-    <h4 class="text-center"><a href routerLink="/player">Cancel New Character</a></h4>
+<div *ngIf="pcCreateStage==='pcStage1'" fxLayout="column" fxFlex="50" fxFlexOffset="25" fxLayoutAlign="center center">
     
-    <form class="selection">
-        <mat-form-field class="form-control">
+    <h3 fxFlex class="text-center heading">CREATE A NEW CHARACTER</h3>
+    <a mat-button color="accent" href routerLink="/player">Cancel New Character</a>
+    
+    <form fxLayout="column" fxFlex="100">
+        <mat-form-field fxFlex>
             <label class="emphasis">CHARACTER NAME</label>
-            <input matInput type="text" [(ngModel)]="character.name" name="name"/>
+            <input matInput type="text" [(ngModel)]="character.name" name="name" required/>
         </mat-form-field>
         
         <mat-form-field class="form-control">
             <label class="emphasis">SPECIES</label>
-            <mat-select [(ngModel)]="character.race_id" (ngModelChange)='raceChange($event)' name="race">
+            <mat-select [(ngModel)]="character.race_id" (ngModelChange)='raceChange($event)' name="race" required>
                 <mat-option *ngFor="let race of allRaces" [value] ="race.id">{{race.name}}</mat-option>
             </mat-select>
         </mat-form-field>
         
         <mat-form-field class="form-control">
             <label class="emphasis">CAREER</label>
-            <mat-select [(ngModel)]="character.career_id" (ngModelChange)='careerChange($event)' name="career">
+            <mat-select [(ngModel)]="character.career_id" (ngModelChange)='careerChange($event)' name="career" required>
                 <mat-option *ngFor="let career of allCareers" [value]="career.id">{{career.name}}</mat-option>
             </mat-select>
         </mat-form-field>
 
         <mat-form-field *ngIf="careerSpecializations" class="form-control">
             <label class="emphasis">SPECIALIZATION</label>
-            <mat-select [(ngModel)]="character.spec_id" name="specialization">
+            <mat-select [(ngModel)]="character.spec_id" name="specialization" required>
                 <mat-option *ngFor="let spec of careerSpecializations" [value]="spec.id">{{spec.name}}</mat-option>
             </mat-select>
         </mat-form-field>
 
-        <button class="btn btn-default" (click)="pcStage2()">Save {{character.name}}</button>
+        <button fxFlex mat-raised-button color="primary" (click)="pcStage2()">Save {{character.name}}</button>
 
         <div *ngIf="raceDetails">
         <h3 class="text-center heading">CHARACTER PREVIEW</h3>
@@ -62,7 +62,7 @@
         </table>
         </div>
     </form>
-    </div>
+    
     
     <div *ngIf="raceDetails">
    		<img [src]='raceDetails.avatar' id="avatar-preview">
@@ -70,12 +70,11 @@
 </div>
 
 <!-- Stage 2 of character creation -->
-<div *ngIf="pcCreateStage === 'pcStage2'" fxLayout="row">
-    <div fxFlex="50" fxFlexOffset="25">
+<div *ngIf="pcCreateStage === 'pcStage2'" fxLayout="column" fxFlex="50" fxFlexOffset="25" fxLayoutAlign="center center">
     <h3 class="text-center heading">{{newPc.name}}</h3>
     
     <h4 class="text-center emphasis">Select 4 skills to increase rank for free</h4>
-    <table id="skills" class="table selection">
+    <table id="skills" class="table">
         <thead>
             <tr>
                 <th id="skill">Skill</th>
@@ -98,7 +97,7 @@
     <h4 class="text-center">You have {{careerSkillChoices}} left</h4>
     
     <h4 class="text-center emphasis">Select 2 skills to increase rank for free</h4>
-    <table id="skills" class="table selection">
+    <table id="skills" class="table">
         <thead>
             <tr>
                 <th id="skill">Skill</th>
@@ -118,14 +117,14 @@
     
     <h4 class="text-center">You have {{specSkillChoices}} left</h4>
     
-    <button class="btn btn-outline-primary" *ngIf="careerSkillChoices === 0 && specSkillChoices === 0" (click)="pcStage3()">Continue</button>
-    </div>
+    <button fxFlex mat-raised-button color="primary" *ngIf="careerSkillChoices === 0 && specSkillChoices === 0" (click)="pcStage3()">Continue</button>
+    
 </div>
 
 <!-- Stage 3 of character creation -->
-<div *ngIf="pcCreateStage === 'pcStage3'" fxLayout="row">
-    <div fxFlex="50" fxFlexOffset="25">
-    <table id="attributes" class="table selection">
+<div *ngIf="pcCreateStage === 'pcStage3'" fxLayout="column" fxFlex="50" fxFlexOffset="25" fxLayoutAlign="center center">
+    <h4 class="text-center">ATTRIBUTES</h4>
+    <table id="attributes" class="table">
         <thead>
             <tr>
                 <th>Attribute</th>
@@ -175,7 +174,8 @@
         </tbody>
     </table>
     
-    <table id="skills" class="table selection">
+    <h4 class="text-center">SKILLS</h4>
+    <table id="skills" class="table">
         <thead>
             <tr>
                 <th id="skill">Skill</th>
@@ -202,7 +202,6 @@
         </tbody>
     </table>
     <h5 class="emphasize text-center">Remaining XP {{newPc.xp}}</h5>
-    <button class="btn btn-outline-primary" (click)="pcFinalize()">Finish</button>
-</div>
+    <button mat-raised-button color="primary" (click)="pcFinalize()">Finish</button>
 </div>
 </body>

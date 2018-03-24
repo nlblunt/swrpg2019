@@ -1,4 +1,4 @@
-@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "@angular/material/prebuilt-themes/pink-bluegrey.css";
 
 /* You can add global styles to this file, and also import other style files */
 body
@@ -6,16 +6,104 @@ body
 	//background-color: rgba(234, 235, 236, 1);
 }
 
-.character-heading
+.text-center
 {
-    color: rgb(169, 69, 68);
-    font-family: 'Biryani', sans-serif;
+	text-align: center;
 }
 
-.emp-color
+.text-right
+{
+	text-align: right;
+}
+
+.text-left
+{
+	text-align: left;
+}
+
+.heading
+{
+    color: rgb(169, 69, 68);
+    font-family: 'STARWARS', sans-serif;
+}
+
+.emphasis
 {
     color: rgb(160, 60, 68);
     font-weight: bold;
+}
+
+form
+{
+	background-color: rgba(61,61,61,1);
+	padding: 10px;
+	margin: 1%;
+	font-size: 10px;
+	width: 98%;
+}
+
+table
+{
+	background-color: rgba(61,61,61,1);
+	padding: 10px;
+	margin: 1%;
+	font-size: 10px;
+	width: 98%;
+}
+
+th, td
+{
+	border-bottom: 1px solid #ddd
+}
+
+caption
+{
+	vertical-align: middle;
+}
+
+.width-100
+{
+	width: 100%;
+}
+
+.width-98
+{
+	width: 98%;
+}
+
+.width-50
+{
+	width: 50%;
+}
+
+.width-33
+{
+	width: 33%;
+}
+
+.width-30
+{
+	width: 30%;
+}
+
+.width-25
+{
+	width: 25%;
+}
+
+.width-50px
+{
+	width: 50px;
+}
+
+.width-15px
+{
+	width: 15px;
+}
+
+.margin-1
+{
+	margin: 1%;
 }
 
 .character-section
@@ -213,14 +301,15 @@ th#attribute
 	width: 25%;
 }
 
-th#rank
+.rank-10
 {
-	width: 5%;
+	width: 10px;
 }
 
 td#skill-rank
 {
-	width: 5%;
+	//width: 5%;
+	width: 10px;
 }
 
 td.table-rank
@@ -309,7 +398,7 @@ img.dice
 div#character_skills
 {
 	max-height: 600px;
-	overflow-y: scroll;
+	//overflow-y: scroll;
 }
 
 div#character_overview p
@@ -318,18 +407,7 @@ div#character_overview p
 	font-size: 12px;
 }
 
-.gm-all-pcs
-{
-	width: 18%;
-	float: left;
-	border: 1px solid black;
-	border-radius: 5px;
-	margin: 5px;
-	background-color: white;
-	padding: 5px;
-}
-
-td.rank input.ng-dirty
+td input.ng-dirty
 {
 	-webkit-transition: 1s linear all;
 	transition: 1s linear all;
@@ -350,75 +428,12 @@ table#pc_attributes input.ng-dirty
 	background-color: rgb(54, 255, 48);
 }
 
-ul#gm_pc_update
-{
-	width: 100%;
-	height: 30px;
-	list-style: none;
-	
-}
-
-ul#gm_pc_update li
-{
-	float: left;
-	padding: 10px;
-	text-align: center;
-}
-
 .margin-zero
 {
   margin: 0px;
 }
 
-#game_session
-{
-	color: gold;
-	-webkit-transition:0.5s linear all;
-	transition:0.5s linear all;
-}
-
-.session_pcs
-{
-  border: 1px solid black;
-}
-
-.session_avatar
-{
-  width: 100%;
-}
-
-.manage_pcs
-{
- -webkit-transition:0.5s linear all;
- transition:0.5s linear all;
- opacity:1;
-
-}
-
-.manage_pcs.ng-hide
-{
-  -webkit-transition:0.5s linear all;
-  transition:0.5s linear all;
-  opacity:0;
-}
-
-tr.all_pcs.ng-leave
-{
-	-webkit-transition:0.25s linear all;
-	transition:0.25s linear all;
-	opacity:1;
-}
-tr.all_pcs.ng-leave.ng-leave-active
-{
-	opacity:0;
-}
-
 .border-bottom
 {
 	border-bottom: 1px solid black;
-}
-
-#admin_nav
-{
-	list-style: none;
 }

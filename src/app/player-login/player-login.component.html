@@ -1,5 +1,6 @@
 <div>
-	<form *ngIf="!registering" class="form-control-group" fxLayout="column" fxLayoutAlign="center" fxFlex.md="30" fxFlexOffset.md="35" fxFlexOffset ="15" fxFlex="70">
+  <div *ngIf="registering === false" fxLayout="column" fxLayoutAlign="center" fxFlex.md="30" fxFlexOffset.md="35" fxFlexOffset ="15" fxFlex="70">
+	<form class="form-control-group" fxLayout="column" fxLayoutAlign="center" fxFlex.md="30" fxFlexOffset.md="35" fxFlexOffset ="15" fxFlex="70">
 		<h3 class="text-center" *ngIf="error">{{error}}</h3>
   		<mat-form-field class="form-control">
   		<input [(ngModel)]="login.email" name="email" matInput placeholder="Email" required>
@@ -11,11 +12,14 @@
   		</mat-form-field>
 	
 	  	<button class="btn btn-outline-primary" (click)="playerSignIn()">Sign In</button>
-	  	<p>or</p>
-	  	<button class="btn btn-outline-primary" (click)="startRegister()">Register</button>
+	  	
 	</form>
+  <p>or</p>
+  <button class="btn btn-outline-primary" (click)="startRegister()">Register</button>
+  </div>
 
-	<form *ngIf="registering" class="form-control-group" fxLayout="column" fxLayoutAlign="center" fxFlex.md="30" fxFlexOffset.md="35" fxFlexOffset ="15" fxFlex="70">
+  <div *ngIf="registering === true" fxLayout="column" fxLayoutAlign="center" fxFlex.md="30" fxFlexOffset.md="35" fxFlexOffset ="15" fxFlex="70">
+	<form class="form-control-group" fxLayout="column" fxLayoutAlign="center" fxFlex.md="30" fxFlexOffset.md="35" fxFlexOffset ="15" fxFlex="70">
 		<h3 class="text-center" *ngIf="error">{{error}}</h3>
   		<mat-form-field class="form-control">
   		<input [(ngModel)]="login.email" name="email" matInput placeholder="Email" required>
@@ -39,4 +43,5 @@
 
 	  	<button class="btn btn-outline-primary" (click)="playerRegister()">Register</button>
 	</form>
+</div>
 </div>

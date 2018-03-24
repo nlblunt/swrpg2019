@@ -1,8 +1,7 @@
-<body id="pcView">
-<div class="container-fluid" id="characterselected">
+<body>
+<div>
     <img src="/assets/imperial_logo.jpg" (click)="togglePcNavMenu()" class="nav-icon">
-    <h5>Menu</h5>
-    <h5><a href routerLink="/player"> Exit </a></h5>
+    <a mat-button href routerLink="/player"> Exit </a>
     <div>
     	<ul id="character-nav" class="{{pcNavClass}}">
     		<li>
@@ -21,17 +20,17 @@
     </div>
     
     <!-- Character Over Section -->
-<div id="character_overview" *ngIf="pcViewStage === 'overview'">
-    <section class="pc-section">
+<div *ngIf="pcViewStage === 'overview'">
+    <section class="pc-overview-section">
         <img [src]=selectedPc.avatar class="pc-avatar">
         <h2 class="heading">{{selectedPc.name}}</h2>
-        <section class="pc-overview-section">
+        <section class="pc-section">
             <p>Race: {{selectedPc.race_name}}</p>
             <p>Career: {{selectedPc.career_name}}</p>
             <p>XP: {{selectedPc.xp}}</p>
             <p>Credits: {{selectedPc.credits}}</p>
         </section>
-        <section class="pc-overview-section">
+        <section class="pc-section">
             <p>Obligation: N/A</p>
             <p>Duty: N/A</p>
             <p>Force Balance: N/A</p>
@@ -83,8 +82,8 @@
 </div>
 
 <!-- Character Skills -->
-<div id="character_skills" *ngIf="pcViewStage === 'skills'">
-    <div class="col-sm-12">
+<div fxFlexLayout="column" id="character_skills" *ngIf="pcViewStage === 'skills'">
+    <div>
     <section class="pc-section">
     <table class="table">
         <tr>
@@ -184,9 +183,9 @@
 
 <!-- Character Combat -->
 <div id="character_combat" *ngIf="pcViewStage === 'combat'">
-    <div class="row">
-        <div class="col-sm-6">
-            <section class="pc-section">
+    <div fxLayout="row" fxLayoutAlign="space-between space-between" fxLayoutGap="10px">
+        <div fxLayout="column" fxFlex.gt-sm="50">
+            <section fxFlex="100" class="pc-section">
                 <h2 class="heading">COMBAT STATS</h2>
                 <table class="table">
                     <tr>
@@ -207,7 +206,7 @@
                 </table>
             </section>
 
-            <section class="pc-section">
+            <section fxFlex="100" class="pc-section">
                 <h2 class="heading">ITEMS</h2>
                 <table class="table">
                     <thead>
@@ -226,8 +225,8 @@
             </section>
         </div>
         
-        <div class="col-sm-6">
-            <section class="pc-section">
+        <div fxLayout="column" fxFlex.gt-sm="50">
+            <section fxFlex="100" class="pc-section">
                 <h2 class="heading">WEAPONS</h2>
                 <table class="table">
                     <thead>
@@ -260,7 +259,7 @@
                 </table>
             </section>
             
-                        <section class="pc-section">
+            <section fxFlex="100" class="pc-section">
                 <h2 class="heading">ARMOR</h2>
                 <table class="table">
                     <thead>

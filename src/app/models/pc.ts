@@ -32,4 +32,5 @@ export class Pc
     armors: Armor[];
     skills: Skill[];  //PC Skills array
     spec_id: number;  //used for character creation
+    selected: boolean;  //TRUE = GM selected for current session.  Local variable only: Does not save to server
 }

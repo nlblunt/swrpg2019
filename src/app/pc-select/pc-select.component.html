@@ -1,5 +1,5 @@
 <div *ngIf="pcSelected === false" fxLayout="row">
-    <mat-card fxFlex="33" fxFlex.xs="100" *ngFor='let pc of allPcs'>
+    <mat-card fxFlex.gt-sm="33" fxFlex="100" *ngFor='let pc of allPcs'>
         <mat-card-header>
             <mat-card-title>{{pc.name}}</mat-card-title>
             <mat-card-subtitle>{{pc.career_name}}</mat-card-subtitle>
@@ -14,7 +14,7 @@
         </mat-card-content>
 
         <mat-card-actions>
-            <button class='btn btn-outline-dark' (click)='selectPc(pc)'>Select</button>
+            <button mat-button (click)='selectPc(pc)'>Select</button>
         </mat-card-actions>
     </mat-card>
 </div>
