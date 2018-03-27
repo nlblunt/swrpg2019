@@ -11,11 +11,12 @@
   		<input [(ngModel)]="login.password" name="password" matInput placeholder="Password" type="password" required>
   		</mat-form-field>
 	
-	  	<button class="btn btn-outline-primary" (click)="playerSignIn()">Sign In</button>
-	  	
+	  	<button mat-raised-button color="primary" (click)="playerSignIn()">Sign In</button>
 	</form>
-  <p>or</p>
-  <button class="btn btn-outline-primary" (click)="startRegister()">Register</button>
+
+      <p>or</p>
+
+      <button mat-raised-button color="warn" (click)="startRegister()">Register</button>
   </div>
 
   <div *ngIf="registering === true" fxLayout="column" fxLayoutAlign="center" fxFlex.md="30" fxFlexOffset.md="35" fxFlexOffset ="15" fxFlex="70">
@@ -41,7 +42,7 @@
   		<input [(ngModel)]="login.name" name="name" matInput placeholder="Name">
   		</mat-form-field>
 
-	  	<button class="btn btn-outline-primary" (click)="playerRegister()">Register</button>
+	  	<button mat-raised-button color="primary" (click)="playerRegister()">Register</button>
 	</form>
 </div>
 </div>

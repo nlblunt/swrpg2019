@@ -14,6 +14,8 @@ export class GmService {
   selectedPc: Pc;   //What is the selected Pc?
   display: string;  //What display to show
   
+  pcsInSession: Pc[];
+  
   constructor(private _tokenService: Angular2TokenService, private router: Router)
   {
   	
@@ -29,8 +31,15 @@ export class GmService {
         .then(res => this.allPcs = res.json() as Pc[]);
     };
 
+  //Delete this PC from the server
   deletePc(id)
   {
     return this._tokenService.post('player/delete_pc', {id: id});
+  }
+
+  //Update the PC.  Requires a PC and SKILLS list
+  updatePc(pc, skills)
+  {
+    return this._tokenService.post('gm/modify_pc',{pc: pc, skills: skills});
   }
 }

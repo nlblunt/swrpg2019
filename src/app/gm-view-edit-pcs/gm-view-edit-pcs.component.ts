@@ -10,9 +10,12 @@ import { Pc } from '../models/pc';
   styleUrls: ['./gm-view-edit-pcs.component.css']
 })
 export class GmViewEditPcsComponent implements OnInit {
-
+  loading: boolean = false;
   allPcs: Pc[];
   character: Pc;
+  skills: any = {};
+  changed_skills: number = 0;
+
   constructor(private gmService: GmService) { }
 
   //Initialize this component and get a list of all PCS from the server
@@ -30,8 +33,14 @@ export class GmViewEditPcsComponent implements OnInit {
   delete_pc(id)
   {
     //Delete this PC and get a new list
+    this.loading = true;
     this.gmService.deletePc(id).subscribe(
-      res => this.getAllPcs(),
+      res => 
+      {
+        this.getAllPcs();
+        this.loading = false;
+      }
+      ,
       error => console.log(error));
   }
 
@@ -39,9 +48,39 @@ export class GmViewEditPcsComponent implements OnInit {
   {
     //Close the edit pc state.  Set character to null.
     this.character = null;
+    this.changed_skills = 0;
     this.gmService.display = "";
   }
 
+  gm_modify_pc()
+  {
+    this.loading = true;
+
+    this.gmService.updatePc(this.character, this.skills).subscribe(
+      res => 
+      {
+        this.getAllPcs();
+        this.loading = false;
+      }
+      ,
+      error => console.log(error));
+  }
+
+  add_session()
+  {
+    if(this.character.selected == true)
+    {
+      this.gmService.pcsInSession.push(this.character);
+    }
+    else
+    {
+      var index = this.gmService.pcsInSession.indexOf(this.character);
+      if(index > -1)
+      {
+        this.gmService.pcsInSession.splice(index, 1);
+      }
+    }
+  }
   open_add_weapon_pc_dialog(){}
 
   delete_weapon_from_pc(index, id){}
@@ -54,7 +93,12 @@ export class GmViewEditPcsComponent implements OnInit {
 
   delete_item_from_pc(index, id){}
 
-  skill_rank_changed(skill, rank){}
+  skill_rank_changed(skill, rank)
+  {
+    skill.rank = parseInt(rank, 10);
+    this.skills[skill.name] = skill;
+    this.changed_skills = this.changed_skills + 1;
+  }
 
   //Utility functions
   getAllPcs()
@@ -63,9 +107,9 @@ export class GmViewEditPcsComponent implements OnInit {
      this.gmService.getAllPcs()
     .then(() => 
       {
+        this.allPcs = null;
         this.allPcs = this.gmService.allPcs;
         this.character = this.allPcs[0];
-        console.log(this.allPcs);
       })
     .catch(res => console.log(res));
   }

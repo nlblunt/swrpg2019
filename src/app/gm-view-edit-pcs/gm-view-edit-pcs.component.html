@@ -9,11 +9,14 @@
 			<div *ngIf="character != null">
 			    <div class="row" id="edit_pc">
 			        <div fxLayout="row" class="margin-1">
+
 			            <div id="gm_pc_update">
-			                <a mat-raised-button color="primary" href (click)="gm_modify_pc()">SAVE UPDATES</a>
-			                <a mat-raised-button color="primary" href (click)="close_edit_pc_state()">CANCEL</a>
-			           		<button mat-raised-button color="warn" (click)="delete_pc(character.id)">DELETE PC</button>        
-			                Changed Skills: {{changed_skills}}
+			                <a mat-raised-button color="primary" (click)="gm_modify_pc()">SAVE UPDATES</a>
+			                <a mat-raised-button color="primary" (click)="close_edit_pc_state()">CANCEL</a>
+			           		<button mat-raised-button color="warn" (click)="delete_pc(character.id)">DELETE PC</button>
+			           		<mat-checkbox color="primary" [(ngModel)]="character.selected" (ngModelChange)='add_session()'>Add to Session</mat-checkbox>  
+			                <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+			                <div>Changed Skills: {{changed_skills}}</div>
 			            </div>
 			        </div>
 
@@ -29,12 +32,11 @@
 				                <div>
 				                    <label class="emphasis">Species</label>
 				                    <p>{{character.race_name}}</p>
-				<!--                     <select class="form-control" [(ngModel)]="character.race" ng-options="race.name for race in races track by race.id"></select>
-				 -->            </div>
+					           </div>
 				                
 				                <div>
 				                    <label class="emphasis">Career</label>
-				                    <!-- <select class="form-control" ng-change="careerSelected()" [(ngModel)]="character.career" ng-options="career.name for career in careers track by career.id"></select> -->
+				                    <p>{{character.career_name}}</p>
 				                </div>
 				                <h4 class="heading">ATTRIBUTES</h4>
 				                <mat-form-field class="width-30">
