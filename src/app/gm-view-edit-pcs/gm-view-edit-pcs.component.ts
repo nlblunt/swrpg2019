@@ -22,7 +22,11 @@ export class GmViewEditPcsComponent implements OnInit {
   //using the GmService
   ngOnInit() 
   {
-    this.getAllPcs();
+    //this.allPcs = this.gmService.allPcs;
+
+    //this.allPcs = null;
+    this.allPcs = this.gmService.allPcs;
+    this.character = this.allPcs[0];
   }
 
   setPc(pc)

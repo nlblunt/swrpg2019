@@ -10,6 +10,7 @@ import { GmService } from '../gm.service';
   styleUrls: ['./gm.component.css']
 })
 export class GmComponent implements OnInit {
+  loading: boolean = false;
 
   constructor(public gmService: GmService, private _tokenService: Angular2TokenService, private router: Router)
   {
@@ -18,6 +19,9 @@ export class GmComponent implements OnInit {
 
   ngOnInit() 
   {
+    //Show loading bar until all calls are finshed
+    this.loading = true;
+    
   	//Check to see if this user has GM privs from server
   	this._tokenService.get("gm/gm_status").subscribe(
   		res => console.log("GM Privs"),
@@ -25,6 +29,11 @@ export class GmComponent implements OnInit {
   			console.log("No GM Privs");
   			this.router.navigateByUrl("/home")
   		})
+
+    //Get a list of all player pcs
+    this.gmService.getAllPcs()
+    .then(res => this.loading = false)
+    .catch(res => console.log("Error"))
   }
 
   setDisplay(newDisplay)

@@ -19,6 +19,9 @@ import { PcViewComponent } from './pc-view/pc-view.component';
 //Import GM COMPONENTS
 import { GmComponent } from './gm/gm.component';
 import { GmViewEditPcsComponent } from './gm-view-edit-pcs/gm-view-edit-pcs.component';
+import { GmViewWeaponsComponent } from './gm-view-weapons/gm-view-weapons.component';
+import { GmViewArmorComponent } from './gm-view-armor/gm-view-armor.component';
+import { GmViewItemsComponent } from './gm-view-items/gm-view-items.component'
 
 //Import PC SERVICES
 import { PlayerService } from './player.service';
@@ -39,7 +42,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button'
 import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatProgressBarModule } from '@angular/material/progress-bar'
-import { MatCheckboxModule } from '@angular/material/checkbox'
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
 
 @NgModule({
   declarations: [
@@ -51,7 +55,10 @@ import { MatCheckboxModule } from '@angular/material/checkbox'
     PcCreateComponent,
     PcViewComponent,
     GmComponent,
-    GmViewEditPcsComponent
+    GmViewEditPcsComponent,
+    GmViewWeaponsComponent,
+    GmViewArmorComponent,
+    GmViewItemsComponent
   ],
   imports: [
     BrowserModule,

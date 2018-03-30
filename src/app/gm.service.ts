@@ -18,7 +18,7 @@ export class GmService {
   
   constructor(private _tokenService: Angular2TokenService, private router: Router)
   {
-  	
+  	this.pcsInSession = [];
   }
 
   //This gets a list of all the PCS on the server and stores them in allPcs for later use

@@ -2,7 +2,7 @@
 	<mat-sidenav-container autosize>
 		<mat-sidenav mode="side" opened>
 			
-			<div *ngFor='let pc of allPcs'><button mat-button (click)="setPc(pc)">{{pc.name}}</button><br></div>
+			<div *ngFor='let pc of allPcs'><button *ngIf='pc.selected != true' mat-button (click)="setPc(pc)">{{pc.name}}</button><button *ngIf="pc.selected == true" color="accent" mat-raised-button (click)="setPc(pc)">{{pc.name}}</button><br></div>
 		</mat-sidenav>
 		<mat-sidenav-content>
 

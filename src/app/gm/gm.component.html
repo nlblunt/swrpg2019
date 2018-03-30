@@ -1,4 +1,5 @@
 <div>
+	<mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
 	<button mat-button color="warn" [matMenuTriggerFor]="pcs">Player Characters</button>
 	<mat-menu #pcs="matMenu">
 		<button color="accent" mat-button (click)="setDisplay('viewEditPcs')">List Characters</button>
@@ -11,5 +12,15 @@
 		<div mat-menu-item><button color="accent" mat-button>Nemesis</button></div>
 	</mat-menu>
 
+	<button mat-button color="warn" [matMenuTriggerFor]="gear">Gear</button>
+	<mat-menu #gear="matMenu">
+		<div mat-menu-item><button color="accent" mat-button (click)="setDisplay('viewEditWeapons')">Weapons</button></div>
+		<div mat-menu-item><button color="accent" mat-button (click)="setDisplay('viewEditArmor')">Armor</button></div>
+		<div mat-menu-item><button color="accent" mat-button (click)="setDisplay('viewEditItems')">Items</button></div>
+	</mat-menu>
+
 	<app-gm-view-edit-pcs *ngIf="gmService.display === 'viewEditPcs'"></app-gm-view-edit-pcs>
+	<app-gm-view-weapons *ngIf="gmService.display === 'viewEditWeapons'"></app-gm-view-weapons>
+	<app-gm-view-armor *ngIf="gmService.display === 'viewEditArmor'"></app-gm-view-armor>
+	<aap-gm-view-items *ngIf="gmService.display === 'viewEditItems'"></aap-gm-view-items>
 </div>
