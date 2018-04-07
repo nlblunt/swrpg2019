@@ -3,7 +3,7 @@
 /* You can add global styles to this file, and also import other style files */
 body
 {
-	//background-color: rgba(234, 235, 236, 1);
+	background-image: image_url('./assets/bg1.jpg');
 }
 
 .text-center
@@ -230,9 +230,11 @@ form#editplayer
 
 div#characterselected
 {
+	/*
 	//width: 80%;
 	//margin-left: 10%;
 	//margin-right: 10%;
+	*/
 	width: 100%;
     margin-top: 50px;
 }
@@ -308,7 +310,7 @@ th#attribute
 
 td#skill-rank
 {
-	//width: 5%;
+	
 	width: 10px;
 }
 
@@ -332,7 +334,7 @@ td.table-rank
 	border: solid 1px red;
 	border-radius: 10px;
 	background-color: red;
-	//font-size: 10px;
+	
 	font-weight: bold;
 }
 
@@ -398,7 +400,7 @@ img.dice
 div#character_skills
 {
 	max-height: 600px;
-	//overflow-y: scroll;
+	/*overflow-y: scroll;*/
 }
 
 div#character_overview p
