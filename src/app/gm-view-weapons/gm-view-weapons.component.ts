@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { GmService } from ‘../gm.service’;
+import { GmService } from “../gm.service”;
 
-import { Weapon } from ‘../models/weapon’;
+import { Weapon } from '../models/weapon';
 
 @Component({
   selector: 'app-gm-view-weapons',
