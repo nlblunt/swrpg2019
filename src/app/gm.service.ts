@@ -5,12 +5,15 @@ import { Injectable } from '@angular/core';
 import { Angular2TokenService } from 'angular2-token'
 import { Router } from '@angular/router';
 
+// IMPORT NEEDED MODELS
 import { Pc } from './models/pc';
+import { Weapon } from ‘./models/weapon’
 
 @Injectable()
 export class GmService {
   //All PCS and SelectedPc
   allPcs: Pc[];     //Holds all the Pcs from the server
+  allWeapons: Weapon[];  //Holds all the available weapons
   selectedPc: Pc;   //What is the selected Pc?
   display: string;  //What display to show
   
@@ -42,4 +45,11 @@ export class GmService {
   {
     return this._tokenService.post('gm/modify_pc',{pc: pc, skills: skills});
   }
+
+  //Get all the weapons
+  getAllWeapons()
+{
+   this.allWeapons = [];
+   return this._tokenService.get(‘gm/get_all_weapons’);
+}
 }
