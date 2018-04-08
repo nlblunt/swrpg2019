@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { GmService } from “../gm.service”;
+import { GmService } from '../gm.service';
 
 import { Weapon } from '../models/weapon';
 
@@ -16,7 +16,7 @@ export class GmViewWeaponsComponent implements OnInit {
 
   ngOnInit() 
   {
-     this.allWeapons = gmService.allWeapons;
+     this.allWeapons = this.gmService.allWeapons;
   }
 
 }

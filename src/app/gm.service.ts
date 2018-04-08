@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 
 // IMPORT NEEDED MODELS
 import { Pc } from './models/pc';
-import { Weapon } from ‘./models/weapon’
+import { Weapon } from './models/weapon'
 
 @Injectable()
 export class GmService {
@@ -50,6 +50,6 @@ export class GmService {
   getAllWeapons()
 {
    this.allWeapons = [];
-   return this._tokenService.get(‘gm/get_all_weapons’);
+   return this._tokenService.get('gm/get_all_weapons');
 }
 }
