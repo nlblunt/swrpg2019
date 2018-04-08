@@ -48,8 +48,26 @@ export class GmService {
 
   //Get all the weapons
   getAllWeapons()
-{
+  {
    this.allWeapons = [];
    return this._tokenService.get('gm/get_all_weapons');
-}
+  }
+
+  //Add a new weapon
+  addNewWeapon(weapon)
+  {
+    return this._tokenService.post('', weapon);
+  }
+
+  //Delete a weapon
+  deleteWeapon(id)
+  {
+
+  }
+
+  //Edit a weapon
+  editWeapon(weapon)
+  {
+    
+  }
 }
