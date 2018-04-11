@@ -3,7 +3,8 @@
 /* You can add global styles to this file, and also import other style files */
 body
 {
-	background-image: image_url('./assets/bg1.jpg');
+	background-image: url('./assets/bg1.jpg');
+	background-size: cover;
 }
 
 .text-center

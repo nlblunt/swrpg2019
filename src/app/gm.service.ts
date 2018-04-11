@@ -47,27 +47,30 @@ export class GmService {
   }
 
   //Get all the weapons
-  getAllWeapons()
+  getAllWeapons(): Promise<Weapon[]>
   {
    this.allWeapons = [];
-   return this._tokenService.get('gm/get_all_weapons');
+     return this._tokenService.get('weapon').toPromise()
+     .then(
+     res => this.allWeapons = res.json(),
+     error => console.log(error));
   }
 
   //Add a new weapon
   addNewWeapon(weapon)
   {
-    return this._tokenService.post('', weapon);
+    return this._tokenService.post('weapon', weapon);
   }
 
   //Delete a weapon
-  deleteWeapon(id)
+  deleteWeapon(weapon)
   {
-
+    return this._tokenService.delete('weapon/' + weapon.id);
   }
 
   //Edit a weapon
   editWeapon(weapon)
   {
-    
+    return this._tokenService.patch('weapon/' + weapon.id, weapon);
   }
 }

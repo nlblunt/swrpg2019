@@ -36,7 +36,8 @@ export class GmComponent implements OnInit {
     .catch(res => console.log("Error"))
 
     //Get a list of all weapons
-    this.gmService.getAllWeapons().subscribe(
+    this.gmService.getAllWeapons()
+    .then(
       res => this.loading = false,
       error => console.log(error));
   }
