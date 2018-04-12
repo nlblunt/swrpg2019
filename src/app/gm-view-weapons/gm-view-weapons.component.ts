@@ -33,6 +33,21 @@ export class GmViewWeaponsComponent implements OnInit {
     this.weapon = new Weapon;
   }
 
+  saveNewWeapon()
+  {
+	 //Save the new weapon
+	 this.gmService.addNewWeapon(this.weapon).subscribe(
+		res=> {
+			this.gmService.getAllWeapons()
+			.then(
+				res=>
+				{
+					this.allWeapons = this.gmService.allWeapons;
+				})
+			},
+			error => console.log(error));
+  }
+
   updateWeapon()
   {
     this.gmService.editWeapon(this.weapon).subscribe(
