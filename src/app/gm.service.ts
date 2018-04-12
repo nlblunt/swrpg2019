@@ -71,6 +71,6 @@ export class GmService {
   //Edit a weapon
   editWeapon(weapon)
   {
-    return this._tokenService.patch('weapon/' + weapon.id, weapon);
+    return this._tokenService.put('weapon/' + weapon.id, weapon);
   }
 }
