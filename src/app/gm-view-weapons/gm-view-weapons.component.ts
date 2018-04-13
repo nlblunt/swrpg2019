@@ -10,6 +10,7 @@ import { Weapon } from '../models/weapon';
   styleUrls: ['./gm-view-weapons.component.css']
 })
 export class GmViewWeaponsComponent implements OnInit {
+  loading: Boolean = false;  //Do we display the loading progress bar?
   allWeapons: Weapon[];
   weapon: Weapon;
   new: boolean = false;  //Are we creating a new weapon
@@ -35,21 +36,34 @@ export class GmViewWeaponsComponent implements OnInit {
 
   saveNewWeapon()
   {
-	 //Save the new weapon
+   //Save the new weapon
+   this.loading = true;
+
 	 this.gmService.addNewWeapon(this.weapon).subscribe(
-		res=> {
+		res=> { //If successful, get a new list of weapons from the server
 			this.gmService.getAllWeapons()
 			.then(
 				res=>
 				{
-					this.allWeapons = this.gmService.allWeapons;
+          //Save the list of weapons from the server to local
+          this.allWeapons = this.gmService.allWeapons;
+          
+          //Disable progress bar
+          this.loading = false;
 				})
 			},
-			error => console.log(error));
+			error => {
+        console.log(error)
+
+        //Disable progress bar
+        this.loading = false;
+      });
   }
 
   updateWeapon()
   {
+    this.loading = true;
+
     this.gmService.editWeapon(this.weapon).subscribe(
       res=> {
         this.gmService.getAllWeapons()
@@ -57,9 +71,17 @@ export class GmViewWeaponsComponent implements OnInit {
           res => 
           {
             this.allWeapons = this.gmService.allWeapons;
+
+            //Disable progress bar
+            this.loading = false;
           })
       },
-      error => console.log(error));
+      error => {
+        console.log(error); 
+
+        //Disable progress bar
+        this.loading = false;
+      });
   }
   
   setWeapon(weapon)
