@@ -11,7 +11,7 @@
 					<a *ngIf="edit" mat-raised-button color="primary" (click)="updateWeapon()">SAVE UPDATES</a>
 					<a *ngIf="new" mat-raised-button color="primary" (click)="saveNewWeapon()">SAVE NEW WEAPON</a>
 					<a mat-raised-button color="primary">CANCEL</a>
-					<a *ngIf="edit" mat-raised-button color="warn">DELETE WEAPON</a>
+					<a *ngIf="edit" mat-raised-button color="warn" (click)="deleteWeapon()">DELETE WEAPON</a>
 					<mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
 				</div>
 
