@@ -60,6 +60,30 @@ export class GmViewWeaponsComponent implements OnInit {
       });
   }
 
+  deleteWeapon()
+  {
+  this.loading = true;
+  this.gmService.deleteWeapon(this.weapon).subscribe(
+  	res=> { //If successful, get a new list of weapons from the server
+			this.gmService.getAllWeapons()
+			.then(
+				res=>
+				{
+          //Save the list of weapons from the server to local
+          this.allWeapons = this.gmService.allWeapons;
+          
+          //Disable progress bar
+          this.loading = false;
+				})
+			},
+			error => {
+        console.log(error)
+
+        //Disable progress bar
+        this.loading = false;
+      });
+  }
+
   updateWeapon()
   {
     this.loading = true;
