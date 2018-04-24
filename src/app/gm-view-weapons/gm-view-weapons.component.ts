@@ -69,6 +69,8 @@ export class GmViewWeaponsComponent implements OnInit {
 			.then(
 				res=>
 				{
+          //Empty out the weapon we are deleting
+          this.weapon = null;
           //Save the list of weapons from the server to local
           this.allWeapons = this.gmService.allWeapons;
           

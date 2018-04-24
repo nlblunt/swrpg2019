@@ -73,4 +73,32 @@ export class GmService {
   {
     return this._tokenService.put('weapon/' + weapon.id, weapon);
   }
+
+//Get all the armor
+  getAllArmor(): Promise<Armor[]>
+  {
+   this.allArmor = [];
+     return this._tokenService.get('armor').toPromise()
+     .then(
+     res => this.allArmor = res.json(),
+     error => console.log(error));
+  }
+
+  //Add a new weapon
+  addNewArmor(armor)
+  {
+    return this._tokenService.post('armor', armor);
+  }
+
+  //Delete an armor
+  deleteArmor(armor)
+  {
+    return this._tokenService.delete('armor/' + armor.id);
+  }
+
+  //Edit a weapon
+  editArmor(armor)
+  {
+    return this._tokenService.put('armor/' + armor.id, armor);
+  }
 }
