@@ -8,12 +8,15 @@ import { Router } from '@angular/router';
 // IMPORT NEEDED MODELS
 import { Pc } from './models/pc';
 import { Weapon } from './models/weapon'
+import { Armor } from './models/armor'
 
 @Injectable()
 export class GmService {
   //All PCS and SelectedPc
   allPcs: Pc[];     //Holds all the Pcs from the server
   allWeapons: Weapon[];  //Holds all the available weapons
+  allArmor: Armor[];  //Holds all the available armor
+
   selectedPc: Pc;   //What is the selected Pc?
   display: string;  //What display to show
   
@@ -96,7 +99,7 @@ export class GmService {
     return this._tokenService.delete('armor/' + armor.id);
   }
 
-  //Edit a weapon
+  //Edit an armor
   editArmor(armor)
   {
     return this._tokenService.put('armor/' + armor.id, armor);
