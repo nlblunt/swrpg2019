@@ -1,4 +1,5 @@
 <div fxLayout="row">
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
 	<mat-sidenav-container autosize>
 		<mat-sidenav mode="side" opened>
 			<button mat-button (click)="createNewWeapon()">New Weapon</button>
@@ -12,7 +13,7 @@
 					<a *ngIf="new" mat-raised-button color="primary" (click)="saveNewWeapon()">SAVE NEW WEAPON</a>
 					<a mat-raised-button color="primary">CANCEL</a>
 					<a *ngIf="edit" mat-raised-button color="warn" (click)="deleteWeapon()">DELETE WEAPON</a>
-					<mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+					
 				</div>
 
 				<div fxLayout="row" class="margin-1">

@@ -1,3 +1,50 @@
-<p>
-  gm-view-armor works!
-</p>
+<div fxLayout="row">
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+	<mat-sidenav-container autosize>
+		<mat-sidenav mode="side" opened>
+			<button mat-button (click)="createNewArmor()">New Armor</button>
+			<div *ngFor='let armor of allArmor'><button mat-button (click)="setArmor(armor)">{{armor.name}}</button></div>
+		</mat-sidenav>
+
+		<mat-sidenav-content>
+			<div *ngIf="armor != null">
+				<div fxLayout="row" class="margin-1">
+					<a *ngIf="edit" mat-raised-button color="primary" (click)="updateArmor()">SAVE UPDATES</a>
+					<a *ngIf="new" mat-raised-button color="primary" (click)="saveNewArmor()">SAVE NEW ARMOR</a>
+					<a mat-raised-button color="primary">CANCEL</a>
+					<a *ngIf="edit" mat-raised-button color="warn" (click)="deleteArmor()">DELETE ARMOR</a>
+					
+				</div>
+
+				<div fxLayout="row" class="margin-1">
+					<form class="width-50">
+						<mat-form-field class="width-100">
+							<label class="emphasis">Armor Name</label>
+							<input matInput type="text" [(ngModel)]="armor.name" name="name">
+						</mat-form-field>
+
+						<mat-form-field class="width-100">
+							<label class="emphasis">Defence</label>
+							<input matInput type="number" [(ngModel)]="armor.defense" name="defense">
+						</mat-form-field>
+
+						<mat-form-field class="width-100">
+							<label class="emphasis">Soak</label>
+							<input matInput type="number" [(ngModel)]="armor.soak" name="soak">
+						</mat-form-field>
+
+						<mat-form-field class="width-100">
+							<label class="emphasis">Price</label>
+							<input matInput type="number" [(ngModel)]="armor.price" name="price">
+						</mat-form-field>
+
+						<mat-form-field class="width-100">
+							<label class="emphasis">Description</label>
+							<textarea matInput [(ngModel)]="armor.description" name="description" rows=5></textarea>
+						</mat-form-field>
+					</form>
+				</div>
+			</div>
+		</mat-sidenav-content>
+	</mat-sidenav-container>
+</div>
