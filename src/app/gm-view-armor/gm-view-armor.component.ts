@@ -16,41 +16,37 @@ export class GmViewArmorComponent implements OnInit {
 
   constructor(private gmService: GmService) { }
 
-  ngOnInit() 
-  {
+  ngOnInit() {
     //Assign all weapons from gmService to local variable.  If there is at least 1 weapon, set first element to weapon.
-     this.allArmor = this.gmService.allArmor;
-     if(this.allArmor.length > 0) this.armor = this.allArmor[0];
-     console.log(this.armor);
+    this.allArmor = this.gmService.allArmor;
+    if (this.allArmor.length > 0) this.armor = this.allArmor[0];
+    console.log(this.armor);
   }
 
-  createNewArmor()
-  {
+  createNewArmor() {
     //Setup a new weapon to create
     this.edit = false;
     this.new = true;
     this.armor = new Armor;
   }
 
-  saveNewArmor()
-  {
-   //Save the new weapon
-   this.loading = true;
+  saveNewArmor() {
+    //Save the new weapon
+    this.loading = true;
 
-	 this.gmService.addNewArmor(this.armor).subscribe(
-		res=> { //If successful, get a new list of weapons from the server
-			this.gmService.getAllArmor()
-			.then(
-				res=>
-				{
-          //Save the list of weapons from the server to local
-          this.allArmor = this.gmService.allArmor;
-          
-          //Disable progress bar
-          this.loading = false;
-				})
-			},
-			error => {
+    this.gmService.addNewArmor(this.armor).subscribe(
+      res => { //If successful, get a new list of weapons from the server
+        this.gmService.getAllArmor()
+          .then(
+            res => {
+              //Save the list of weapons from the server to local
+              this.allArmor = this.gmService.allArmor;
+
+              //Disable progress bar
+              this.loading = false;
+            })
+      },
+      error => {
         console.log(error)
 
         //Disable progress bar
@@ -58,25 +54,23 @@ export class GmViewArmorComponent implements OnInit {
       });
   }
 
-  deleteArmor()
-  {
-  this.loading = true;
-  this.gmService.deleteArmor(this.armor).subscribe(
-  	res=> { //If successful, get a new list of weapons from the server
-			this.gmService.getAllArmor()
-			.then(
-				res=>
-				{
-          //Empty out the weapon we are deleting
-          this.armor = null;
-          //Save the list of weapons from the server to local
-          this.allArmor = this.gmService.allArmor;
-          
-          //Disable progress bar
-          this.loading = false;
-				})
-			},
-			error => {
+  deleteArmor() {
+    this.loading = true;
+    this.gmService.deleteArmor(this.armor).subscribe(
+      res => { //If successful, get a new list of weapons from the server
+        this.gmService.getAllArmor()
+          .then(
+            res => {
+              //Empty out the weapon we are deleting
+              this.armor = null;
+              //Save the list of weapons from the server to local
+              this.allArmor = this.gmService.allArmor;
+
+              //Disable progress bar
+              this.loading = false;
+            })
+      },
+      error => {
         console.log(error)
 
         //Disable progress bar
@@ -84,32 +78,29 @@ export class GmViewArmorComponent implements OnInit {
       });
   }
 
-  updateArmor()
-  {
+  updateArmor() {
     this.loading = true;
 
     this.gmService.editArmor(this.armor).subscribe(
-      res=> {
+      res => {
         this.gmService.getAllArmor()
-        .then(
-          res => 
-          {
-            this.allArmor = this.gmService.allArmor;
+          .then(
+            res => {
+              this.allArmor = this.gmService.allArmor;
 
-            //Disable progress bar
-            this.loading = false;
-          })
+              //Disable progress bar
+              this.loading = false;
+            })
       },
       error => {
-        console.log(error); 
+        console.log(error);
 
         //Disable progress bar
         this.loading = false;
       });
   }
-  
-  setArmor(armor)
-  {
+
+  setArmor(armor) {
     //Set the weapon to edit
     this.new = false;
     this.edit = true;

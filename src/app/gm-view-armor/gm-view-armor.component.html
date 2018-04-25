@@ -1,9 +1,11 @@
 <div fxLayout="row">
-    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+	<mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
 	<mat-sidenav-container autosize>
 		<mat-sidenav mode="side" opened>
 			<button mat-button (click)="createNewArmor()">New Armor</button>
-			<div *ngFor='let armor of allArmor'><button mat-button (click)="setArmor(armor)">{{armor.name}}</button></div>
+			<div *ngFor='let armor of allArmor'>
+				<button mat-button (click)="setArmor(armor)">{{armor.name}}</button>
+			</div>
 		</mat-sidenav>
 
 		<mat-sidenav-content>
@@ -13,7 +15,7 @@
 					<a *ngIf="new" mat-raised-button color="primary" (click)="saveNewArmor()">SAVE NEW ARMOR</a>
 					<a mat-raised-button color="primary">CANCEL</a>
 					<a *ngIf="edit" mat-raised-button color="warn" (click)="deleteArmor()">DELETE ARMOR</a>
-					
+
 				</div>
 
 				<div fxLayout="row" class="margin-1">
