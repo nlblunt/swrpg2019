@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { Pc } from './models/pc';
 import { Weapon } from './models/weapon'
 import { Armor } from './models/armor'
+import { Item } from './models/item'
 
 @Injectable()
 export class GmService {
@@ -16,6 +17,7 @@ export class GmService {
   allPcs: Pc[];     //Holds all the Pcs from the server
   allWeapons: Weapon[];  //Holds all the available weapons
   allArmor: Armor[];  //Holds all the available armor
+  allItems: Item[];
 
   selectedPc: Pc;   //What is the selected Pc?
   display: string;  //What display to show
@@ -78,7 +80,7 @@ export class GmService {
         error => console.log(error));
   }
 
-  //Add a new weapon
+  //Add a new armor
   addNewArmor(armor) {
     return this._tokenService.post('armor', armor);
   }
@@ -91,5 +93,29 @@ export class GmService {
   //Edit an armor
   editArmor(armor) {
     return this._tokenService.put('armor/' + armor.id, armor);
+  }
+
+  //Get all the items
+  getAllItems(): Promise<Item[]> {
+    this.allItems = [];
+    return this._tokenService.get('item').toPromise()
+      .then(
+        res => this.allItems = res.json(),
+        error => console.log(error));
+  }
+
+  //Add a new item
+  addNewItem(item) {
+    return this._tokenService.post('item', item);
+  }
+
+  //Delete an item
+  deleteItem(item) {
+    return this._tokenService.delete('item/' + item.id);
+  }
+
+  //Edit an armor
+  editItem(item) {
+    return this._tokenService.put('item/' + item.id, item);
   }
 }

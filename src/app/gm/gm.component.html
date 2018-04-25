@@ -1,5 +1,5 @@
 <div>
-	<mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+	<mat-progress-bar *ngIf="loading < 100" mode="determinate" [value]="loading"></mat-progress-bar>
 	<button mat-button color="warn" [matMenuTriggerFor]="pcs">Player Characters</button>
 	<mat-menu #pcs="matMenu">
 		<button color="accent" mat-button (click)="setDisplay('viewEditPcs')">List Characters</button>

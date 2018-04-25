@@ -1,3 +1,42 @@
-<p>
-  gm-view-items works!
-</p>
+<div fxLayout="row">
+  <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+  <mat-sidenav-container autosize>
+    <mat-sidenav mode="side" opened>
+      <button mat-button (click)="createNewItem()">New Item</button>
+      <div *ngFor='let item of allItems'>
+        <button mat-button (click)="setItems(item)">{{item.name}}</button>
+      </div>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <div *ngIf="item != null">
+        <div fxLayout="row" class="margin-1">
+          <a *ngIf="edit" mat-raised-button color="primary" (click)="updateItem()">SAVE UPDATES</a>
+          <a *ngIf="new" mat-raised-button color="primary" (click)="saveNewItem()">SAVE NEW Item</a>
+          <a mat-raised-button color="primary">CANCEL</a>
+          <a *ngIf="edit" mat-raised-button color="warn" (click)="deleteItem()">DELETE Item</a>
+
+        </div>
+
+        <div fxLayout="row" class="margin-1">
+          <form class="width-50">
+            <mat-form-field class="width-100">
+              <label class="emphasis">Item Name</label>
+              <input matInput type="text" [(ngModel)]="item.name" name="name">
+            </mat-form-field>
+
+            <mat-form-field class="width-100">
+              <label class="emphasis">Price</label>
+              <input matInput type="number" [(ngModel)]="item.price" name="price">
+            </mat-form-field>
+
+            <mat-form-field class="width-100">
+              <label class="emphasis">Description</label>
+              <textarea matInput [(ngModel)]="item.description" name="description" rows=5></textarea>
+            </mat-form-field>
+          </form>
+        </div>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
