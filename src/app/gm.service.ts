@@ -19,89 +19,77 @@ export class GmService {
 
   selectedPc: Pc;   //What is the selected Pc?
   display: string;  //What display to show
-  
+
   pcsInSession: Pc[];
-  
-  constructor(private _tokenService: Angular2TokenService, private router: Router)
-  {
-  	this.pcsInSession = [];
+
+  constructor(private _tokenService: Angular2TokenService, private router: Router) {
+    this.pcsInSession = [];
   }
 
   //This gets a list of all the PCS on the server and stores them in allPcs for later use
-  getAllPcs(): Promise<Pc[]>
-  	{
-        //Clear out allPcs
-        this.allPcs = [];
-        return this._tokenService.get('gm/get_all_pcs.json')//, {headers: this.authHeader})//JSON.stringify({id: this.currentUser.id, auth_token: this.currentUser.token}), {headers: this.authHeader})
-        .toPromise()
-        .then(res => this.allPcs = res.json() as Pc[]);
-    };
+  getAllPcs(): Promise<Pc[]> {
+    //Clear out allPcs
+    this.allPcs = [];
+    return this._tokenService.get('gm/get_all_pcs.json')//, {headers: this.authHeader})//JSON.stringify({id: this.currentUser.id, auth_token: this.currentUser.token}), {headers: this.authHeader})
+      .toPromise()
+      .then(res => this.allPcs = res.json() as Pc[]);
+  };
 
   //Delete this PC from the server
-  deletePc(id)
-  {
-    return this._tokenService.post('player/delete_pc', {id: id});
+  deletePc(id) {
+    return this._tokenService.post('player/delete_pc', { id: id });
   }
 
   //Update the PC.  Requires a PC and SKILLS list
-  updatePc(pc, skills)
-  {
-    return this._tokenService.post('gm/modify_pc',{pc: pc, skills: skills});
+  updatePc(pc, skills) {
+    return this._tokenService.post('gm/modify_pc', { pc: pc, skills: skills });
   }
 
   //Get all the weapons
-  getAllWeapons(): Promise<Weapon[]>
-  {
-   this.allWeapons = [];
-     return this._tokenService.get('weapon').toPromise()
-     .then(
-     res => this.allWeapons = res.json(),
-     error => console.log(error));
+  getAllWeapons(): Promise<Weapon[]> {
+    this.allWeapons = [];
+    return this._tokenService.get('weapon').toPromise()
+      .then(
+        res => this.allWeapons = res.json(),
+        error => console.log(error));
   }
 
   //Add a new weapon
-  addNewWeapon(weapon)
-  {
+  addNewWeapon(weapon) {
     return this._tokenService.post('weapon', weapon);
   }
 
   //Delete a weapon
-  deleteWeapon(weapon)
-  {
+  deleteWeapon(weapon) {
     return this._tokenService.delete('weapon/' + weapon.id);
   }
 
   //Edit a weapon
-  editWeapon(weapon)
-  {
+  editWeapon(weapon) {
     return this._tokenService.put('weapon/' + weapon.id, weapon);
   }
 
-//Get all the armor
-  getAllArmor(): Promise<Armor[]>
-  {
-   this.allArmor = [];
-     return this._tokenService.get('armor').toPromise()
-     .then(
-     res => this.allArmor = res.json(),
-     error => console.log(error));
+  //Get all the armor
+  getAllArmor(): Promise<Armor[]> {
+    this.allArmor = [];
+    return this._tokenService.get('armor').toPromise()
+      .then(
+        res => this.allArmor = res.json(),
+        error => console.log(error));
   }
 
   //Add a new weapon
-  addNewArmor(armor)
-  {
+  addNewArmor(armor) {
     return this._tokenService.post('armor', armor);
   }
 
   //Delete an armor
-  deleteArmor(armor)
-  {
+  deleteArmor(armor) {
     return this._tokenService.delete('armor/' + armor.id);
   }
 
   //Edit an armor
-  editArmor(armor)
-  {
+  editArmor(armor) {
     return this._tokenService.put('armor/' + armor.id, armor);
   }
 }

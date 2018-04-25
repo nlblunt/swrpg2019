@@ -7,16 +7,28 @@
 
 	<button mat-button color="warn" [matMenuTriggerFor]="npcs">NPCs</button>
 	<mat-menu #npcs="matMenu">
-		<div mat-menu-item><button color="accent" mat-button>Minion Groups</button></div>
-		<div mat-menu-item><button color="accent" mat-button>Grunts</button></div>
-		<div mat-menu-item><button color="accent" mat-button>Nemesis</button></div>
+		<div mat-menu-item>
+			<button color="accent" mat-button>Minion Groups</button>
+		</div>
+		<div mat-menu-item>
+			<button color="accent" mat-button>Grunts</button>
+		</div>
+		<div mat-menu-item>
+			<button color="accent" mat-button>Nemesis</button>
+		</div>
 	</mat-menu>
 
 	<button mat-button color="warn" [matMenuTriggerFor]="gear">Gear</button>
 	<mat-menu #gear="matMenu">
-		<div mat-menu-item><button color="accent" mat-button (click)="setDisplay('viewEditWeapons')">Weapons</button></div>
-		<div mat-menu-item><button color="accent" mat-button (click)="setDisplay('viewEditArmor')">Armor</button></div>
-		<div mat-menu-item><button color="accent" mat-button (click)="setDisplay('viewEditItems')">Items</button></div>
+		<div mat-menu-item>
+			<button color="accent" mat-button (click)="setDisplay('viewEditWeapons')">Weapons</button>
+		</div>
+		<div mat-menu-item>
+			<button color="accent" mat-button (click)="setDisplay('viewEditArmor')">Armor</button>
+		</div>
+		<div mat-menu-item>
+			<button color="accent" mat-button (click)="setDisplay('viewEditItems')">Items</button>
+		</div>
 	</mat-menu>
 
 	<app-gm-view-edit-pcs *ngIf="gmService.display === 'viewEditPcs'"></app-gm-view-edit-pcs>

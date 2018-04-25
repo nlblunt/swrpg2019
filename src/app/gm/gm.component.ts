@@ -12,38 +12,41 @@ import { GmService } from '../gm.service';
 export class GmComponent implements OnInit {
   loading: boolean = false;
 
-  constructor(public gmService: GmService, private _tokenService: Angular2TokenService, private router: Router)
-  {
-  	
+  constructor(public gmService: GmService, private _tokenService: Angular2TokenService, private router: Router) {
+
   }
 
-  ngOnInit() 
-  {
+  ngOnInit() {
     //Show loading bar until all calls are finshed
     this.loading = true;
-    
-  	//Check to see if this user has GM privs from server
-  	this._tokenService.get("gm/gm_status").subscribe(
-  		res => console.log("GM Privs"),
-  		error => {
-  			console.log("No GM Privs");
-  			this.router.navigateByUrl("/home")
-  		})
+
+    //Check to see if this user has GM privs from server
+    this._tokenService.get("gm/gm_status").subscribe(
+      res => console.log("GM Privs"),
+      error => {
+        console.log("No GM Privs");
+        this.router.navigateByUrl("/home")
+      })
 
     //Get a list of all player pcs
     this.gmService.getAllPcs()
-    .then(res => this.loading = false)
-    .catch(res => console.log("Error"))
+      .then(res => this.loading = false)
+      .catch(res => console.log("Error"))
 
     //Get a list of all weapons
     this.gmService.getAllWeapons()
-    .then(
-      res => this.loading = false,
-      error => console.log(error));
+      .then(
+        res => this.loading = false,
+        error => console.log(error));
+
+    this.gmService.getAllArmor()
+      .then(
+        res => this.loading = false,
+        error => console.log(error)
+      )
   }
 
-  setDisplay(newDisplay)
-  {
+  setDisplay(newDisplay) {
     this.gmService.display = newDisplay;
   }
 }
