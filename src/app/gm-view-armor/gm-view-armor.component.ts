@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Armor } from '../models/armor';
+import { GmService } from '../gm.service';
 
 @Component({
   selector: 'app-gm-view-armor',
