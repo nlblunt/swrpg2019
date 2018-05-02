@@ -1,19 +1,22 @@
 <div fxLayout="row">
-    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
 	<mat-sidenav-container autosize>
 		<mat-sidenav mode="side" opened>
 			<button mat-button (click)="createNewWeapon()">New Weapon</button>
-			<div *ngFor='let weapon of allWeapons'><button mat-button (click)="setWeapon(weapon)">{{weapon.name}}</button></div>
+			<div *ngFor='let weapon of allWeapons' class="width-100">
+				<button mat-button (click)="setWeapon(weapon)" class="width-100">{{weapon.name}}</button>
+			</div>
 		</mat-sidenav>
 
 		<mat-sidenav-content>
 			<div *ngIf="weapon != null">
+				<div *ngIf="loading" fxLayout="row">
+					<mat-progress-bar mode="indeterminate" class="width-100"></mat-progress-bar>
+				</div>
 				<div fxLayout="row" class="margin-1">
 					<a *ngIf="edit" mat-raised-button color="primary" (click)="updateWeapon()">SAVE UPDATES</a>
 					<a *ngIf="new" mat-raised-button color="primary" (click)="saveNewWeapon()">SAVE NEW WEAPON</a>
 					<a mat-raised-button color="primary">CANCEL</a>
 					<a *ngIf="edit" mat-raised-button color="warn" (click)="deleteWeapon()">DELETE WEAPON</a>
-					
 				</div>
 
 				<div fxLayout="row" class="margin-1">
