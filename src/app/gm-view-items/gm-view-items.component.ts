@@ -18,6 +18,7 @@ export class GmViewItemsComponent implements OnInit {
 
   ngOnInit() {
     //Assign all weapons from gmService to local variable.  If there is at least 1 weapon, set first element to weapon.
+    this.item = new Item;
     this.allItems = this.gmService.allItems;
     if (this.allItems.length > 0) this.item = this.allItems[0];
     console.log(this.item);
