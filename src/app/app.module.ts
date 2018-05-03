@@ -43,6 +43,8 @@ import { MatButtonModule } from '@angular/material/button'
 import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatProgressBarModule } from '@angular/material/progress-bar'
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { DlgAddWeaponComponent } from './dlg-add-weapon/dlg-add-weapon.component';
+import { DlgAddArmorComponent } from './dlg-add-armor/dlg-add-armor.component';
 
 
 @NgModule({
@@ -58,7 +60,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     GmViewEditPcsComponent,
     GmViewWeaponsComponent,
     GmViewArmorComponent,
-    GmViewItemsComponent
+    GmViewItemsComponent,
+    DlgAddWeaponComponent,
+    DlgAddArmorComponent
   ],
   imports: [
     BrowserModule,

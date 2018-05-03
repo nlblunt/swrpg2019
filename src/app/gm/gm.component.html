@@ -31,6 +31,7 @@
 		</div>
 	</mat-menu>
 
+	<button mat-button color="warn" (click)="logOut()" style="float:right">Log Out</button>
 	<app-gm-view-edit-pcs *ngIf="gmService.display === 'viewEditPcs'"></app-gm-view-edit-pcs>
 	<app-gm-view-weapons *ngIf="gmService.display === 'viewEditWeapons'"></app-gm-view-weapons>
 	<app-gm-view-armor *ngIf="gmService.display === 'viewEditArmor'"></app-gm-view-armor>
