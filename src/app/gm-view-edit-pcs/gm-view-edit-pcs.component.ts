@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
 
 import { GmService } from '../gm.service';
 
+import { DlgAddWeaponComponent } from '../dlg-add-weapon/dlg-add-weapon.component';
 import { Pc } from '../models/pc';
 
 @Component({
@@ -16,7 +18,7 @@ export class GmViewEditPcsComponent implements OnInit {
   skills: any = {};
   changed_skills: number = 0;
 
-  constructor(private gmService: GmService) { }
+  constructor(private gmService: GmService, public dialog: MatDialog) { }
 
   //Initialize this component and get a list of all PCS from the server
   //using the GmService
@@ -85,7 +87,14 @@ export class GmViewEditPcsComponent implements OnInit {
       }
     }
   }
-  open_add_weapon_pc_dialog(){}
+  
+  openAddWeaponPcDialog(){
+    let dialogRef = this.dialog.open(DlgAddWeaponComponent, {width: '400px', data: this.character});
+
+    dialogRef.afterClosed().subscribe(result => {
+      //Update this character
+    })
+  }
 
   delete_weapon_from_pc(index, id){}
 
