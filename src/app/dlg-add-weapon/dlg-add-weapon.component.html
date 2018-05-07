@@ -1,3 +1,18 @@
-<p>
-  dlg-add-weapon works!
-</p>
+<h2 mat-dialog-title>Add which weapon?</h2>
+<mat-dialog-content>
+
+  <mat-radio-group>
+    <mat-radio-button color="primary" value="all" (change)='changeWeaponView("all")' style="padding: 10px" checked>All</mat-radio-button>
+    <mat-radio-button color="primary" value="template" (change)='changeWeaponView("template")' style="padding: 10px">Template</mat-radio-button>
+    <mat-radio-button color="primary" value="created" (change)='changeWeaponView("created")' style="padding: 10px">Created</mat-radio-button>
+  </mat-radio-group>
+
+  <ul>
+    <li *ngFor="let weapon of shownWeapons">
+      <a mat-raised-button (click)='addWeapon(weapon)' style="margin-right: 10px">+</a>{{weapon.name}}
+    </li>
+  </ul>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close color="warn">Cancel</button>
+</mat-dialog-actions>

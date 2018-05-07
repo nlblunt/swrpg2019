@@ -25,6 +25,8 @@ export class DlgAddWeaponComponent implements OnInit {
   ngOnInit() {
     //Save all weapons to local variable
     this.allWeapons = this.gmService.allWeapons;
+    this.templateWeapons = [];
+    this.createdWeapons = [];
 
     //Sort weapons by template weapons or created / crafted weapons
     this.allWeapons.forEach(weapon => {
@@ -60,7 +62,9 @@ export class DlgAddWeaponComponent implements OnInit {
   //Adds the weapon to the character.  Clones a new weapon if template, or moves the item from current owner.
   //Res = new weapon info from server
   addWeapon(weapon) {
-    this.gmService.addWeaponToPc(weapon, this.data.character).subscribe(
+    console.log(weapon);
+    console.log(this.data.id);
+    this.gmService.addWeaponToPc(weapon, this.data.id).subscribe(
       res => {
         //Update the master list of weapon.  Don't need to wait.
         this.gmService.getAllWeapons();

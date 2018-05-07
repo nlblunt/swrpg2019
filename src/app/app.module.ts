@@ -1,7 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { HttpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from "@angular/http";
+import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 import { RouterModule, Routes } from "@angular/router";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -9,6 +9,8 @@ import { Angular2TokenService } from "angular2-token";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./home/home.component";
+import { DlgAddWeaponComponent } from "./dlg-add-weapon/dlg-add-weapon.component";
+import { DlgAddArmorComponent } from "./dlg-add-armor/dlg-add-armor.component";
 
 //Import PC COMPONENTS
 import { PlayerComponent } from "./player/player.component";
@@ -45,8 +47,7 @@ import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatDialogModule } from "@angular/material/dialog";
-import { DlgAddWeaponComponent } from "./dlg-add-weapon/dlg-add-weapon.component";
-import { DlgAddArmorComponent } from "./dlg-add-armor/dlg-add-armor.component";
+import { MatRadioModule } from "@angular/material/radio";
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { DlgAddArmorComponent } from "./dlg-add-armor/dlg-add-armor.component";
     MatSidenavModule,
     MatProgressBarModule,
     MatCheckboxModule,
-    MatDialogModule
+    MatDialogModule,
+    MatRadioModule
   ],
   providers: [
     Angular2TokenService,
@@ -93,6 +95,7 @@ import { DlgAddArmorComponent } from "./dlg-add-armor/dlg-add-armor.component";
     PcViewService,
     GmService
   ],
+  entryComponents: [DlgAddArmorComponent, DlgAddWeaponComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

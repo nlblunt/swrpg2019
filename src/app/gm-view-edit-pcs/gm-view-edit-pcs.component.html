@@ -1,177 +1,216 @@
 <div fxLayout="row">
 	<mat-sidenav-container autosize>
 		<mat-sidenav mode="side" opened>
-			
-			<div *ngFor='let pc of allPcs'><button *ngIf='pc.selected != true' mat-button (click)="setPc(pc)">{{pc.name}}</button><button *ngIf="pc.selected == true" color="accent" mat-raised-button (click)="setPc(pc)">{{pc.name}}</button><br></div>
+
+			<div *ngFor='let pc of allPcs'>
+				<button *ngIf='pc.selected != true' mat-button (click)="setPc(pc)">{{pc.name}}</button>
+				<button *ngIf="pc.selected == true" color="accent" mat-raised-button (click)="setPc(pc)">{{pc.name}}</button>
+				<br>
+			</div>
 		</mat-sidenav>
 		<mat-sidenav-content>
 
 			<div *ngIf="character != null">
-			    <div class="row" id="edit_pc">
-			        <div fxLayout="row" class="margin-1">
+				<div class="row" id="edit_pc">
+					<div fxLayout="row" class="margin-1">
 
-			            <div id="gm_pc_update">
-			                <a mat-raised-button color="primary" (click)="gm_modify_pc()">SAVE UPDATES</a>
-			                <a mat-raised-button color="primary" (click)="close_edit_pc_state()">CANCEL</a>
-			           		<button mat-raised-button color="warn" (click)="delete_pc(character.id)">DELETE PC</button>
-			           		<mat-checkbox color="primary" [(ngModel)]="character.selected" (ngModelChange)='add_session()'>Add to Session</mat-checkbox>  
-			                <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
-			                <div>Changed Skills: {{changed_skills}}</div>
-			            </div>
-			        </div>
+						<div id="gm_pc_update">
+							<a mat-raised-button color="primary" (click)="gm_modify_pc()">SAVE UPDATES</a>
+							<a mat-raised-button color="primary" (click)="close_edit_pc_state()">CANCEL</a>
+							<button mat-raised-button color="warn" (click)="delete_pc(character.id)">DELETE PC</button>
+							<mat-checkbox color="primary" [(ngModel)]="character.selected" (ngModelChange)='add_session()'>Add to Session</mat-checkbox>
+							<mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+							<div>Changed Skills: {{changed_skills}}</div>
+						</div>
+					</div>
 
-			        <div fxLayout="row">
-			        <div fxFlex="70">
-			        	<div fxLayout="row">
-			        		<form fxFlex="50">
-				        		<mat-form-field class="width-100">
-				                    <label class="heading">Character Name</label>
-				                    <input matInput type="text" [(ngModel)]="character.name" name="name">
-				                </mat-form-field>
-			                
-				                <div>
-				                    <label class="emphasis">Species</label>
-				                    <p>{{character.race_name}}</p>
-					           </div>
-				                
-				                <div>
-				                    <label class="emphasis">Career</label>
-				                    <p>{{character.career_name}}</p>
-				                </div>
-				                <h4 class="heading">ATTRIBUTES</h4>
-				                <mat-form-field class="width-30">
-				                	<label>Agility</label>
-				                	<input matInput [(ngModel)]="character.agility" name="agility">
-				                </mat-form-field>
+					<div fxLayout="row">
+						<div fxFlex="70">
+							<div fxLayout="row">
+								<form fxFlex="50">
+									<mat-form-field class="width-100">
+										<label class="heading">Character Name</label>
+										<input matInput type="text" [(ngModel)]="character.name" name="name">
+									</mat-form-field>
 
-				                <mat-form-field class="width-30">
-				                	<label>Brawn</label>
-			                        <input matInput [(ngModel)]="character.brawn" name="brawn">
-			                    </mat-form-field>
+									<div>
+										<label class="emphasis">Species</label>
+										<p>{{character.race_name}}</p>
+									</div>
 
-			                    <mat-form-field class="width-30">    
-			                            <label>Cunning</label>
-			                            <input matInput [(ngModel)]="character.cunning" name="cunning">
-			                    </mat-form-field>
-			                        
-			                    <mat-form-field class="width-30">
-			                            <label>Intellect</label>
-			                            <input matInput [(ngModel)]="character.intellect" name="intellect">
-			                    </mat-form-field>
+									<div>
+										<label class="emphasis">Career</label>
+										<p>{{character.career_name}}</p>
+									</div>
+									<h4 class="heading">ATTRIBUTES</h4>
+									<mat-form-field class="width-30">
+										<label>Agility</label>
+										<input matInput [(ngModel)]="character.agility" name="agility">
+									</mat-form-field>
 
-			                    <mat-form-field class="width-30">
-			                            <label>Presence</label>
-			                            <input matInput [(ngModel)]="character.presence" name="presence">
-			                    </mat-form-field>
+									<mat-form-field class="width-30">
+										<label>Brawn</label>
+										<input matInput [(ngModel)]="character.brawn" name="brawn">
+									</mat-form-field>
 
-			                    <mat-form-field class="width-30">
-			                            <label>Willpower</label>
-			                            <input matInput [(ngModel)]="character.willpower" name="willpower">
-			                    </mat-form-field>
-			        		</form>
+									<mat-form-field class="width-30">
+										<label>Cunning</label>
+										<input matInput [(ngModel)]="character.cunning" name="cunning">
+									</mat-form-field>
 
-			        		<table fxFlex="50">
-			        			<thead>
-			        				<tr>
-			        					<td></td>
-			        					<td class="text-center width-50px">Current</td>
-			        					<td class="text-center width-50px">Max</td>
-			        				</tr>
-			        			</thead>
-			        			<tbody>
-			        				<tr>
-			        					<td><label>Wounds</label></td>
-			        					<td class="width-50px"><input class="width-50px" [(ngModel)]="character.wounds_current" name="wounds_current"></td>
-			                        	<td class="width-50px"><input class="width-50px" [(ngModel)]="character.wounds_thresh" name="wounds_thresh"></td>
-			                        </tr>
-			                        <tr>
-			                        	<td><label>Strain</label></td>
-			                        	<td class="width-50px"><input class="width-50px" [(ngModel)]="character.strain_current" name="strain_current"></td>
-			                        	<td class="width-50px"><input class="width-50px" [(ngModel)]="character.strain_thresh" name="strain_thresh"></td>
-			                        </tr>
-			                        <tr>
-			                        	<td><label>XP</label></td>
-			                        	<td class="width-50px"><input class="width-50px" [(ngModel)]="character.xp" name="xp"></td>
-			                        	<td></td>
-			                        </tr>
-			                        <tr>
-			                        	<td><label>Credits</label></td>
-			                        	<td class="width-50px"><input class="width-50px" [(ngModel)]="character.credits" name="credits"></td>
-			                        	<td></td>
-			                        </tr>
-			        			</tbody>
-			        		</table>
-			        	</div>
-			          
-			           <table>
-			               <caption class="float-left"><img class="circle-add-sm" (click)="open_add_weapon_pc_dialog()" src='/assets/circle_add.png'>  Weapons</caption>
+									<mat-form-field class="width-30">
+										<label>Intellect</label>
+										<input matInput [(ngModel)]="character.intellect" name="intellect">
+									</mat-form-field>
 
-			               <tr>
-			               	<hr>
-			                   <th></th>
-			                   <th>Name</th>
-			                   <th>Description</th>
-			               </tr>
-			               <tr *ngFor='let w of character.weapons; index as i'>
-			                   <td><img class="circle-delete-sm" (click)="delete_weapon_from_pc(i, w.id)" src="/assets/circle_delete.png"></td>
-			                   <td>{{w.name}}</td>
-			                   <td>{{w.description}}</td>
-			               </tr>
-			            </table>
-			            
-			            <table>
-			                <caption class="float-left"><img class="circle-add-sm" (click)="open_add_armor_pc_dialog()" src="/assets/circle_add.png">  Armor</caption>
+									<mat-form-field class="width-30">
+										<label>Presence</label>
+										<input matInput [(ngModel)]="character.presence" name="presence">
+									</mat-form-field>
 
-			                <tr>
-			                    <th></th>
-			                    <th>Name</th>
-			                    <th>Description</th>
-			                </tr>
-			                <tr *ngFor='let a of character.weapons; index as i'>
-			                    <td><img class="circle-delete-sm" (click)="delete_armor_from_pc(i, a.id)" src="/assets/circle_delete.png"></td>
-			                    <td>{{a.name}}</td>
-			                    <td>{{a.description}}</td>
-			                </tr>
-			            </table>
-			            
-			            <table>
-			                <caption class="float-left"><img class="circle-add-sm" (click)="open_add_item_pc_dialog()" src="/assets/circle_add.png">  Items</caption>
-			                <tr>
-			                    <th></th>
-			                    <th>Name</th>
-			                    <th>Description</th>
-			                </tr>
-			                <tr *ngFor='let it of character.items; index as i'>
-			                    <td><img class="circle-delete-sm" (click)="delete_item_from_pc(i, it.id)" src="/assets/circle_delete.png"></td>
-			                    <td>{{it.name}}</td>
-			                    <td>{{it.description}}</td>
-			                </tr>
-			            </table>
-			        </div>
-			        
-			        <div fxFlex="30">
-			            <table>
-			                <thead>
-			                    <tr>
-			                        <th>Name</th>
-			                        <th>Attribute</th>
-			                        <th>Career</th>
-			                        <th class="width-15px">Rank</th>
-			                    </tr>
-			                </thead>
-			                <tbody>
-			                    <tr *ngFor="let skill of character.skills" >
-			                        <td><label>{{skill.name}}</label></td>
-			                        <td><label>{{skill.attrib}}</label></td>
-			                            <td *ngIf="skill.career == true" class="text-center">*</td>
-			                            <td *ngIf="skill.career == false"></td>
-			                        <td class="width-15px"><input class="width-15px text-center" (ngModelChange)="skill_rank_changed(skill, skill.rank)" [(ngModel)]=skill.rank></td>
-			                    </tr>
-			                </tbody>
-			            </table>
-			        </div>
-			    </div>
-			</div>
+									<mat-form-field class="width-30">
+										<label>Willpower</label>
+										<input matInput [(ngModel)]="character.willpower" name="willpower">
+									</mat-form-field>
+								</form>
+
+								<table fxFlex="50">
+									<thead>
+										<tr>
+											<td></td>
+											<td class="text-center width-50px">Current</td>
+											<td class="text-center width-50px">Max</td>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>
+												<label>Wounds</label>
+											</td>
+											<td class="width-50px">
+												<input class="width-50px" [(ngModel)]="character.wounds_current" name="wounds_current">
+											</td>
+											<td class="width-50px">
+												<input class="width-50px" [(ngModel)]="character.wounds_thresh" name="wounds_thresh">
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label>Strain</label>
+											</td>
+											<td class="width-50px">
+												<input class="width-50px" [(ngModel)]="character.strain_current" name="strain_current">
+											</td>
+											<td class="width-50px">
+												<input class="width-50px" [(ngModel)]="character.strain_thresh" name="strain_thresh">
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label>XP</label>
+											</td>
+											<td class="width-50px">
+												<input class="width-50px" [(ngModel)]="character.xp" name="xp">
+											</td>
+											<td></td>
+										</tr>
+										<tr>
+											<td>
+												<label>Credits</label>
+											</td>
+											<td class="width-50px">
+												<input class="width-50px" [(ngModel)]="character.credits" name="credits">
+											</td>
+											<td></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+							<table>
+								<caption class="float-left">
+									<img class="circle-add-sm" (click)="openAddWeaponPcDialog()" src='/assets/circle_add.png'> Weapons</caption>
+
+								<tr>
+									<hr>
+									<th></th>
+									<th>Name</th>
+									<th>Description</th>
+								</tr>
+								<tr *ngFor='let w of character.weapons; index as i'>
+									<td>
+										<img class="circle-delete-sm" (click)="delete_weapon_from_pc(i, w.id)" src="/assets/circle_delete.png">
+									</td>
+									<td>{{w.name}}</td>
+									<td>{{w.description}}</td>
+								</tr>
+							</table>
+
+							<table>
+								<caption class="float-left">
+									<img class="circle-add-sm" (click)="open_add_armor_pc_dialog()" src="/assets/circle_add.png"> Armor</caption>
+
+								<tr>
+									<th></th>
+									<th>Name</th>
+									<th>Description</th>
+								</tr>
+								<tr *ngFor='let a of character.weapons; index as i'>
+									<td>
+										<img class="circle-delete-sm" (click)="delete_armor_from_pc(i, a.id)" src="/assets/circle_delete.png">
+									</td>
+									<td>{{a.name}}</td>
+									<td>{{a.description}}</td>
+								</tr>
+							</table>
+
+							<table>
+								<caption class="float-left">
+									<img class="circle-add-sm" (click)="open_add_item_pc_dialog()" src="/assets/circle_add.png"> Items</caption>
+								<tr>
+									<th></th>
+									<th>Name</th>
+									<th>Description</th>
+								</tr>
+								<tr *ngFor='let it of character.items; index as i'>
+									<td>
+										<img class="circle-delete-sm" (click)="delete_item_from_pc(i, it.id)" src="/assets/circle_delete.png">
+									</td>
+									<td>{{it.name}}</td>
+									<td>{{it.description}}</td>
+								</tr>
+							</table>
+						</div>
+
+						<div fxFlex="30">
+							<table>
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th>Attribute</th>
+										<th>Career</th>
+										<th class="width-15px">Rank</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr *ngFor="let skill of character.skills">
+										<td>
+											<label>{{skill.name}}</label>
+										</td>
+										<td>
+											<label>{{skill.attrib}}</label>
+										</td>
+										<td *ngIf="skill.career == true" class="text-center">*</td>
+										<td *ngIf="skill.career == false"></td>
+										<td class="width-15px">
+											<input class="width-15px text-center" (ngModelChange)="skill_rank_changed(skill, skill.rank)" [(ngModel)]=skill.rank>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
 			</div>
 		</mat-sidenav-content>
 	</mat-sidenav-container>
