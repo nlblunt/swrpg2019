@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { MatDialog } from "@angular/material";
 
-import { GmService } from '../gm.service';
+import { GmService } from "../gm.service";
 
-import { Pc } from '../models/pc';
+import { DlgAddWeaponComponent } from "../dlg-add-weapon/dlg-add-weapon.component";
+import { Pc } from "../models/pc";
 
 @Component({
-  selector: 'app-gm-view-edit-pcs',
-  templateUrl: './gm-view-edit-pcs.component.html',
-  styleUrls: ['./gm-view-edit-pcs.component.css']
+  selector: "app-gm-view-edit-pcs",
+  templateUrl: "./gm-view-edit-pcs.component.html",
+  styleUrls: ["./gm-view-edit-pcs.component.css"]
 })
 export class GmViewEditPcsComponent implements OnInit {
   loading: boolean = false;
@@ -16,12 +18,11 @@ export class GmViewEditPcsComponent implements OnInit {
   skills: any = {};
   changed_skills: number = 0;
 
-  constructor(private gmService: GmService) { }
+  constructor(private gmService: GmService, public dialog: MatDialog) {}
 
   //Initialize this component and get a list of all PCS from the server
   //using the GmService
-  ngOnInit() 
-  {
+  ngOnInit() {
     //this.allPcs = this.gmService.allPcs;
 
     //this.allPcs = null;
@@ -29,92 +30,90 @@ export class GmViewEditPcsComponent implements OnInit {
     this.character = this.allPcs[0];
   }
 
-  setPc(pc)
-  {
+  setPc(pc) {
     this.character = pc;
   }
 
-  delete_pc(id)
-  {
+  delete_pc(id) {
     //Delete this PC and get a new list
     this.loading = true;
     this.gmService.deletePc(id).subscribe(
-      res => 
-      {
+      res => {
         this.getAllPcs();
         this.loading = false;
-      }
-      ,
-      error => console.log(error));
+      },
+      error => console.log(error)
+    );
   }
 
-  close_edit_pc_state()
-  {
+  close_edit_pc_state() {
     //Close the edit pc state.  Set character to null.
     this.character = null;
     this.changed_skills = 0;
     this.gmService.display = "";
   }
 
-  gm_modify_pc()
-  {
+  gm_modify_pc() {
     this.loading = true;
 
     this.gmService.updatePc(this.character, this.skills).subscribe(
-      res => 
-      {
+      res => {
         this.getAllPcs();
         this.loading = false;
-      }
-      ,
-      error => console.log(error));
+      },
+      error => console.log(error)
+    );
   }
 
-  add_session()
-  {
-    if(this.character.selected == true)
-    {
+  add_session() {
+    if (this.character.selected == true) {
       this.gmService.pcsInSession.push(this.character);
-    }
-    else
-    {
+    } else {
       var index = this.gmService.pcsInSession.indexOf(this.character);
-      if(index > -1)
-      {
+      if (index > -1) {
         this.gmService.pcsInSession.splice(index, 1);
       }
     }
   }
-  open_add_weapon_pc_dialog(){}
 
-  delete_weapon_from_pc(index, id){}
+  openAddWeaponPcDialog() {
+    let dialogRef = this.dialog.open(DlgAddWeaponComponent, {
+      width: "400px",
+      height: "600px",
+      data: this.character
+    });
 
-  open_add_armor_pc_dialog(){}
+    dialogRef.afterClosed().subscribe(result => {
+      //Update this character
+    });
+  }
 
-  delete_armor_from_pc(index, id){}
+  delete_weapon_from_pc(index, id) {}
 
-  open_add_item_pc_dialog(){}
+  open_add_armor_pc_dialog() {}
 
-  delete_item_from_pc(index, id){}
+  delete_armor_from_pc(index, id) {}
 
-  skill_rank_changed(skill, rank)
-  {
+  open_add_item_pc_dialog() {}
+
+  delete_item_from_pc(index, id) {}
+
+  skill_rank_changed(skill, rank) {
     skill.rank = parseInt(rank, 10);
     this.skills[skill.name] = skill;
     this.changed_skills = this.changed_skills + 1;
   }
 
   //Utility functions
-  getAllPcs()
-  {
+  getAllPcs() {
     console.log("Getting All PCs");
-     this.gmService.getAllPcs()
-    .then(() => 
-      {
+    this.gmService
+      .getAllPcs()
+      .then(() => {
         this.allPcs = null;
         this.allPcs = this.gmService.allPcs;
         this.character = this.allPcs[0];
       })
-    .catch(res => console.log(res));
+      .catch(res => console.log(res));
   }
 }

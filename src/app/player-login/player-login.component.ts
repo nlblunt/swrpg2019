@@ -58,4 +58,10 @@ export class PlayerLoginComponent implements OnInit {
       },
       error=> this.error = "Error registering account.")
   }
+
+  closeRegister()
+{
+this.login = {};
+this.registering = false;
+}
 }

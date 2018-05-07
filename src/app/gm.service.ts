@@ -75,6 +75,13 @@ export class GmService {
     return this._tokenService.put("weapon/" + weapon.id, weapon);
   }
 
+  addWeaponToPc(weapon, pcId) {
+    return this._tokenService.post("gm/addWeaponToPc", {
+      id: pcId,
+      w_id: weapon.id
+    });
+  }
+
   //Get all the armor
   getAllArmor(): Promise<Armor[]> {
     this.allArmor = [];
