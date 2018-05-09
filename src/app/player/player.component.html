@@ -1,8 +1,9 @@
 <body>
 	<div fxLayout="column" fxLayoutAlign="center center">
-	   	<h1 *ngIf="currentPlayer" class="text-center">Welcome {{currentPlayer.email}}</h1>
-	    <a mat-button href color="accent" (click)="playerSignOut()">Log Out</a>
+		<h1 *ngIf="currentPlayer" class="text-center">Welcome {{currentPlayer.email}}</h1>
+		<a mat-button href color="accent" (click)="playerSignOut()">Log Out</a>
 		<a mat-button color="accent" routerLink='/player/pc-create'>+ New Character +</a>
+		<a *ngIf="currentPlayer && currentPlayer.gm == true" mat-button color="accent" routerLink='/gm'>GM</a>
 	</div>
 
 	<pc-select *ngIf="currentPlayer != null"></pc-select>

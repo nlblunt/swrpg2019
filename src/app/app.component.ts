@@ -15,8 +15,8 @@ export class AppComponent {
   //Initialize Angular2TokenService
   constructor(private _tokenService: Angular2TokenService) {
     this._tokenService.init({
-      apiBase: "http://localhost:4000",
-      //apiBase: "http://swrpgapi.rubywebs.net",
+      //apiBase: "http://localhost:4000",
+      apiBase: "http://swrpgapi.rubywebs.net",
       signInRedirect: "/player-login"
     });
   }

@@ -46,7 +46,7 @@ export class GmService {
     return this._tokenService.post("player/delete_pc", { id: id });
   }
 
-  //Update the PC.  Requires a PC and SKILLS list
+  //GM: Modify the PC.  Requires a PC and SKILLS list
   updatePc(pc, skills) {
     return this._tokenService.post("gm/modify_pc", { pc: pc, skills: skills });
   }
@@ -104,6 +104,14 @@ export class GmService {
   //Edit an armor
   editArmor(armor) {
     return this._tokenService.put("armor/" + armor.id, armor);
+  }
+
+  //Add the armor to the pc.  Could be a new armor or transfer from existing armor.
+  addArmorToPc(armor, pcId) {
+    return this._tokenService.post("gm/addArmorToPc", {
+      id: pcId,
+      a_id: armor.id
+    });
   }
 
   //Get all the items

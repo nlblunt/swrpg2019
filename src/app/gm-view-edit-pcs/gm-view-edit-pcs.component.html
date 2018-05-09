@@ -139,7 +139,7 @@
 								</tr>
 								<tr *ngFor='let w of character.weapons; index as i'>
 									<td>
-										<img class="circle-delete-sm" (click)="delete_weapon_from_pc(i, w.id)" src="/assets/circle_delete.png">
+										<img class="circle-delete-sm" (click)="deleteWeaponFromPc(i, w.id)" src="/assets/circle_delete.png">
 									</td>
 									<td>{{w.name}}</td>
 									<td>{{w.description}}</td>
@@ -148,7 +148,7 @@
 
 							<table>
 								<caption class="float-left">
-									<img class="circle-add-sm" (click)="open_add_armor_pc_dialog()" src="/assets/circle_add.png"> Armor</caption>
+									<img class="circle-add-sm" (click)="openAddArmorPcDialog()" src="/assets/circle_add.png"> Armor</caption>
 
 								<tr>
 									<th></th>
@@ -157,7 +157,7 @@
 								</tr>
 								<tr *ngFor='let a of character.weapons; index as i'>
 									<td>
-										<img class="circle-delete-sm" (click)="delete_armor_from_pc(i, a.id)" src="/assets/circle_delete.png">
+										<img class="circle-delete-sm" (click)="deleteArmorFromPc(i, a.id)" src="/assets/circle_delete.png">
 									</td>
 									<td>{{a.name}}</td>
 									<td>{{a.description}}</td>
@@ -166,7 +166,7 @@
 
 							<table>
 								<caption class="float-left">
-									<img class="circle-add-sm" (click)="open_add_item_pc_dialog()" src="/assets/circle_add.png"> Items</caption>
+									<img class="circle-add-sm" (click)="openAddItemDialog()" src="/assets/circle_add.png"> Items</caption>
 								<tr>
 									<th></th>
 									<th>Name</th>
@@ -174,7 +174,7 @@
 								</tr>
 								<tr *ngFor='let it of character.items; index as i'>
 									<td>
-										<img class="circle-delete-sm" (click)="delete_item_from_pc(i, it.id)" src="/assets/circle_delete.png">
+										<img class="circle-delete-sm" (click)="deleteItemFromPc(i, it.id)" src="/assets/circle_delete.png">
 									</td>
 									<td>{{it.name}}</td>
 									<td>{{it.description}}</td>
