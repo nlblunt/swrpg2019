@@ -88,15 +88,15 @@ export class GmViewEditPcsComponent implements OnInit {
     });
   }
 
-  delete_weapon_from_pc(index, id) {}
+  deleteWeaponFromPc(index, id) {}
 
-  open_add_armor_pc_dialog() {}
+  openAddArmorPcDialog() {}
 
-  delete_armor_from_pc(index, id) {}
+  deleteArmorFromPc(index, id) {}
 
-  open_add_item_pc_dialog() {}
+  openAddItemPcDialog() {}
 
-  delete_item_from_pc(index, id) {}
+  deleteItemFromPc(index, id) {}
 
   skill_rank_changed(skill, rank) {
     skill.rank = parseInt(rank, 10);

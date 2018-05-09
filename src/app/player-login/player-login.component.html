@@ -47,8 +47,10 @@
 				<input [(ngModel)]="login.name" name="name" matInput placeholder="Name">
 			</mat-form-field>
 
+			<mat-checkbox color="primary" [(ngModel)]="login.gm" name="gm">Are you a GM?</mat-checkbox>
+
 			<button mat-raised-button color="primary" (click)="playerRegister()">Register</button>
-<a mat-raised-button color="warn" (click)="closeRegister()">Cancel Registration</a>
+			<a mat-raised-button color="warn" (click)="closeRegister()">Cancel Registration</a>
 		</form>
 	</div>
 </div>
