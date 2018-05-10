@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Add which item?</h2>
+<mat-dialog-content>
+
+  <mat-radio-group>
+    <mat-radio-button color="primary" value="all" (change)='changeItemView("all")' style="padding: 10px">All</mat-radio-button>
+    <mat-radio-button color="primary" value="template" (change)='changeItemView("template")' style="padding: 10px" checked>Template</mat-radio-button>
+    <mat-radio-button color="primary" value="created" (change)='changeItemView("created")' style="padding: 10px">Created</mat-radio-button>
+  </mat-radio-group>
+
+  <ul>
+    <li *ngFor="let item of shownItems">
+      <a mat-raised-button (click)='addItem(item)' style="margin-right: 10px">+</a>{{item.name}}
+    </li>
+  </ul>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close color="warn">Cancel</button>
+</mat-dialog-actions>

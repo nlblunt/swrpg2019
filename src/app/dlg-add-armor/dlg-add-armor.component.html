@@ -2,14 +2,14 @@
 <mat-dialog-content>
 
   <mat-radio-group>
-    <mat-radio-button color="primary" value="all" (change)='changeArmorView("all")' style="padding: 10px" checked>All</mat-radio-button>
-    <mat-radio-button color="primary" value="template" (change)='changeArmorView("template")' style="padding: 10px">Template</mat-radio-button>
+    <mat-radio-button color="primary" value="all" (change)='changeArmorView("all")' style="padding: 10px">All</mat-radio-button>
+    <mat-radio-button color="primary" value="template" (change)='changeArmorView("template")' style="padding: 10px" checked>Template</mat-radio-button>
     <mat-radio-button color="primary" value="created" (change)='changeArmorView("created")' style="padding: 10px">Created</mat-radio-button>
   </mat-radio-group>
 
   <ul>
     <li *ngFor="let armor of shownArmors">
-      <a mat-raised-button (click)='addArmor(armor)' style="margin-right: 10px">+</a>{{weapon.name}}
+      <a mat-raised-button (click)='addArmor(armor)' style="margin-right: 10px">+</a>{{armor.name}}
     </li>
   </ul>
 </mat-dialog-content>

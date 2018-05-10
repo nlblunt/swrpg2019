@@ -4,6 +4,8 @@ import { MatDialog } from "@angular/material";
 import { GmService } from "../gm.service";
 
 import { DlgAddWeaponComponent } from "../dlg-add-weapon/dlg-add-weapon.component";
+import { DlgAddArmorComponent } from "../dlg-add-armor/dlg-add-armor.component";
+import { DlgAddItemComponent } from "../dlg-add-item/dlg-add-item.component";
 import { Pc } from "../models/pc";
 
 @Component({
@@ -88,15 +90,66 @@ export class GmViewEditPcsComponent implements OnInit {
     });
   }
 
-  deleteWeaponFromPc(index, id) {}
+  removeWeaponFromPc(index, weapon) {
+    if (this.loading == true) return;
+    this.loading = true;
+    this.gmService.removeWeaponFromPc(weapon).subscribe(
+      res => {
+        this.character.weapons.splice(index, 1);
+        this.loading = false;
+      },
+      error => console.log(error)
+    );
+  }
 
-  openAddArmorPcDialog() {}
+  openAddArmorPcDialog() {
+    let dialogRef = this.dialog.open(DlgAddArmorComponent, {
+      width: "400px",
+      height: "600px",
+      data: this.character
+    });
 
-  deleteArmorFromPc(index, id) {}
+    dialogRef.afterClosed().subscribe(result => {
+      //Update this character
+    });
+  }
 
-  openAddItemPcDialog() {}
+  removeArmorFromPc(index, armor) {
+    if (this.loading == true) return;
+    this.loading = true;
+    this.gmService.removeArmorFromPc(armor).subscribe(
+      res => {
+        this.character.armors.splice(index, 1);
+        this.loading = false;
+      },
+      error => console.log(error)
+    );
+  }
 
-  deleteItemFromPc(index, id) {}
+  openAddItemPcDialog() {
+    let dialogRef = this.dialog.open(DlgAddItemComponent, {
+      width: "400px",
+      height: "600px",
+      data: this.character
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      //Update this character
+    });
+  }
+
+  removeItemFromPc(index, item) {
+    if (this.loading == true) return;
+    this.loading = true;
+
+    this.gmService.removeItemFromPc(item).subscribe(
+      res => {
+        this.character.items.splice(index, 1);
+        this.loading = false;
+      },
+      error => console.log(error)
+    );
+  }
 
   skill_rank_changed(skill, rank) {
     skill.rank = parseInt(rank, 10);

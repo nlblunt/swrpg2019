@@ -38,7 +38,7 @@ export class DlgAddWeaponComponent implements OnInit {
     });
 
     //Show all weapons by default
-    this.shownWeapons = this.allWeapons;
+    this.shownWeapons = this.templateWeapons;
   }
 
   changeWeaponView(view) {
@@ -62,15 +62,13 @@ export class DlgAddWeaponComponent implements OnInit {
   //Adds the weapon to the character.  Clones a new weapon if template, or moves the item from current owner.
   //Res = new weapon info from server
   addWeapon(weapon) {
-    console.log(weapon);
-    console.log(this.data.id);
     this.gmService.addWeaponToPc(weapon, this.data.id).subscribe(
       res => {
         //Update the master list of weapon.  Don't need to wait.
         this.gmService.getAllWeapons();
 
         //Add the returned weapon to the pc
-        this.data.character.weapons.push(res);
+        this.data.weapons.push(res.json());
 
         //Close the dialog
         this.dialogRef.close();
