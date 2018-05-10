@@ -1,4 +1,9 @@
-<div>
+<div *ngIf='gmPrivs == false'>
+	<mat-progress-bar mode="indeterminate"></mat-progress-bar>
+	<h3 style="text-align:center">Checking for GM Privs</h3>
+</div>
+
+<div *ngIf='gmPrivs == true'>
 	<mat-progress-bar *ngIf="loading < 100" mode="determinate" [value]="loading"></mat-progress-bar>
 	<button mat-button color="warn" [matMenuTriggerFor]="pcs">Player Characters</button>
 	<mat-menu #pcs="matMenu">

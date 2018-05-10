@@ -10,6 +10,7 @@ import { GmService } from "../gm.service";
   styleUrls: ["./gm.component.css"]
 })
 export class GmComponent implements OnInit {
+  gmPrivs: boolean = false; //Does the user have gmPrivs?
   loading: number = 0;
 
   constructor(
@@ -24,40 +25,43 @@ export class GmComponent implements OnInit {
 
     //Check to see if this user has GM privs from server
     this._tokenService.get("gm/gm_status").subscribe(
-      res => console.log("GM Privs"),
+      res => {
+        console.log("GM");
+        this.gmPrivs = true;
+
+        //Get a list of all player pcs
+        this.gmService
+          .getAllPcs()
+          .then(res => (this.loading = this.loading + 25))
+          .catch(res => console.log("Error"));
+
+        //Get a list of all weapons
+        this.gmService
+          .getAllWeapons()
+          .then(
+            res => (this.loading = this.loading + 25),
+            error => console.log(error)
+          );
+
+        this.gmService
+          .getAllArmor()
+          .then(
+            res => (this.loading = this.loading + 25),
+            error => console.log(error)
+          );
+
+        this.gmService
+          .getAllItems()
+          .then(
+            res => (this.loading = this.loading + 25),
+            error => console.log(error)
+          );
+      },
       error => {
         console.log("No GM Privs");
         this.router.navigateByUrl("/home");
       }
     );
-
-    //Get a list of all player pcs
-    this.gmService
-      .getAllPcs()
-      .then(res => (this.loading = this.loading + 25))
-      .catch(res => console.log("Error"));
-
-    //Get a list of all weapons
-    this.gmService
-      .getAllWeapons()
-      .then(
-        res => (this.loading = this.loading + 25),
-        error => console.log(error)
-      );
-
-    this.gmService
-      .getAllArmor()
-      .then(
-        res => (this.loading = this.loading + 25),
-        error => console.log(error)
-      );
-
-    this.gmService
-      .getAllItems()
-      .then(
-        res => (this.loading = this.loading + 25),
-        error => console.log(error)
-      );
   }
 
   setDisplay(newDisplay) {

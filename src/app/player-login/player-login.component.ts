@@ -44,6 +44,8 @@ export class PlayerLoginComponent implements OnInit {
   }
 
   playerRegister() {
+    var data;
+
     this._tokenService
       .registerAccount({
         email: this.login.email,
@@ -53,7 +55,9 @@ export class PlayerLoginComponent implements OnInit {
         nickname: this.login.nickname
       })
       .subscribe(res => {
+        data = res.json();
         this._tokenService.post("player/updatePlayerData", {
+          id: data.data.id,
           name: this.login.name,
           nickname: this.login.nickname,
           gm: this.login.gm

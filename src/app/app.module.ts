@@ -11,6 +11,7 @@ import { AppComponent } from "./app.component";
 import { HomeComponent } from "./home/home.component";
 import { DlgAddWeaponComponent } from "./dlg-add-weapon/dlg-add-weapon.component";
 import { DlgAddArmorComponent } from "./dlg-add-armor/dlg-add-armor.component";
+import { DlgAddItemComponent } from "./dlg-add-item/dlg-add-item.component";
 
 //Import PC COMPONENTS
 import { PlayerComponent } from "./player/player.component";
@@ -48,6 +49,7 @@ import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatRadioModule } from "@angular/material/radio";
+import { MatTabsModule } from "@angular/material/tabs";
 
 @NgModule({
   declarations: [
@@ -64,7 +66,8 @@ import { MatRadioModule } from "@angular/material/radio";
     GmViewArmorComponent,
     GmViewItemsComponent,
     DlgAddWeaponComponent,
-    DlgAddArmorComponent
+    DlgAddArmorComponent,
+    DlgAddItemComponent
   ],
   imports: [
     BrowserModule,
@@ -85,7 +88,8 @@ import { MatRadioModule } from "@angular/material/radio";
     MatProgressBarModule,
     MatCheckboxModule,
     MatDialogModule,
-    MatRadioModule
+    MatRadioModule,
+    MatTabsModule
   ],
   providers: [
     Angular2TokenService,
@@ -95,7 +99,11 @@ import { MatRadioModule } from "@angular/material/radio";
     PcViewService,
     GmService
   ],
-  entryComponents: [DlgAddArmorComponent, DlgAddWeaponComponent],
+  entryComponents: [
+    DlgAddArmorComponent,
+    DlgAddWeaponComponent,
+    DlgAddItemComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

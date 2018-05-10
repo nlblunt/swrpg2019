@@ -75,9 +75,17 @@ export class GmService {
     return this._tokenService.put("weapon/" + weapon.id, weapon);
   }
 
+  //Add the weapon to the PC
   addWeaponToPc(weapon, pcId) {
     return this._tokenService.post("gm/addWeaponToPc", {
       id: pcId,
+      w_id: weapon.id
+    });
+  }
+
+  //Delete the weapon from the PC.  Does not remove weapon from DB
+  removeWeaponFromPc(weapon) {
+    return this._tokenService.post("gm/removeWeaponFromPc", {
       w_id: weapon.id
     });
   }
@@ -114,6 +122,10 @@ export class GmService {
     });
   }
 
+  removeArmorFromPc(armor) {
+    return this._tokenService.post("gm/removeArmorFromPc", { a_id: armor.id });
+  }
+
   //Get all the items
   getAllItems(): Promise<Item[]> {
     this.allItems = [];
@@ -136,5 +148,17 @@ export class GmService {
   //Edit an armor
   editItem(item) {
     return this._tokenService.put("item/" + item.id, item);
+  }
+
+  //Add the itme to the PC
+  addItemToPc(item, pcId) {
+    return this._tokenService.post("gm/addItemToPc", {
+      id: pcId,
+      i_id: item.id
+    });
+  }
+
+  removeItemFromPc(item) {
+    return this._tokenService.post("gm/removeItemFromPc", { i_id: item.id });
   }
 }

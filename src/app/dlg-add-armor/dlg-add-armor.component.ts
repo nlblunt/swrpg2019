@@ -37,7 +37,7 @@ export class DlgAddArmorComponent implements OnInit {
     });
 
     //Show all armor by default
-    this.shownArmors = this.allArmor;
+    this.shownArmors = this.templateArmors;
   }
 
   changeArmorView(view) {
@@ -66,8 +66,9 @@ export class DlgAddArmorComponent implements OnInit {
         //Update the master list of weapon.  Don't need to wait.
         this.gmService.getAllArmor();
 
+        console.log(this.data);
         //Add the returned weapon to the pc
-        this.data.character.armor.push(res);
+        this.data.armors.push(res.json());
 
         //Close the dialog
         this.dialogRef.close();
