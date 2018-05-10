@@ -49,6 +49,7 @@ import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatRadioModule } from "@angular/material/radio";
+import { MatTabsModule } from "@angular/material/tabs";
 
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import { MatRadioModule } from "@angular/material/radio";
     MatProgressBarModule,
     MatCheckboxModule,
     MatDialogModule,
-    MatRadioModule
+    MatRadioModule,
+    MatTabsModule
   ],
   providers: [
     Angular2TokenService,
