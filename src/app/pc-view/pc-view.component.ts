@@ -29,7 +29,7 @@ export class PcViewComponent implements OnInit
     {
         //Save the PC that was selected to work with
         this.selectedPc = this.pcSelectService.selectedPc;
-
+        console.log(this.selectedPc);
         //If selectedPc == null, return to pc-select
         if(this.selectedPc == null) this.router.navigateByUrl("/player");
         
