@@ -24,7 +24,9 @@ export class Pc {
   obligation_amount: number;
   user_id: number;
   race_id: number;
+  race_name: string;
   career_id: number;
+  career_name: string;
   avatar: string;
   status: string;
 
