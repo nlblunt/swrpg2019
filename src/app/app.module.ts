@@ -5,7 +5,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 import { RouterModule, Routes } from "@angular/router";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { Angular2TokenService } from "angular2-token";
+import { AngularTokenModule } from "angular-token";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./home/home.component";
@@ -89,10 +89,15 @@ import { MatTabsModule } from "@angular/material/tabs";
     MatCheckboxModule,
     MatDialogModule,
     MatRadioModule,
-    MatTabsModule
+    MatTabsModule,
+    AngularTokenModule.forRoot({
+            //apiBase: "http://localhost:4000",
+            apiBase: "http://swrpgapi.rubywebs.net",
+            signInRedirect: "/player-login"
+    })
   ],
   providers: [
-    Angular2TokenService,
+    AngularTokenModule,
     PlayerService,
     PcSelectService,
     PcCreateService,

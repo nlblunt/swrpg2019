@@ -11,7 +11,7 @@ import { Skill } from '../models/skill';
 import { Specialization } from '../models/specialization'
 
 //import { ServerUrlService } from '../services/server-url.service';
-import { Angular2TokenService } from 'angular2-token';
+import { AngularTokenService } from 'angular-token';
 
 @Injectable()
 export class PcCreateService
@@ -23,7 +23,7 @@ export class PcCreateService
     currentUser: any;
     authHeader: Headers;
 
-    constructor(private _tokenService: Angular2TokenService)
+    constructor(private _tokenService: AngularTokenService)
     { 
         //this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         //this.authHeader = new Headers();

@@ -6,8 +6,9 @@ import { Router } from "@angular/router";
 import { MatFormFieldModule } from "@angular/material/form-field";
 
 //Import SERVICES
-import { Angular2TokenService } from "angular2-token";
+import { AngularTokenService } from "angular-token";
 import { PlayerService } from "../player.service";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   //selector: 'app-player-login',
@@ -21,7 +22,8 @@ export class PlayerLoginComponent implements OnInit {
   registering: boolean = false;
 
   constructor(
-    private _tokenService: Angular2TokenService,
+    private _tokenService: AngularTokenService,
+    private http: HttpClient,
     private router: Router
   ) {
     //this._tokenService.init();
@@ -36,7 +38,7 @@ export class PlayerLoginComponent implements OnInit {
   playerSignIn() {
     //Sign in.  If successful, redirect back to home.  If error, display error message
     this._tokenService
-      .signIn({ email: this.login.email, password: this.login.password })
+      .signIn({ login: this.login.email, password: this.login.password })
       .subscribe(
         res => this.router.navigateByUrl("/home"),
         error => (this.error = "Error Logging in.  Please try again.")
@@ -48,7 +50,7 @@ export class PlayerLoginComponent implements OnInit {
 
     this._tokenService
       .registerAccount({
-        email: this.login.email,
+        login: this.login.email,
         password: this.login.password,
         passwordConfirmation: this.login.password_confirmation,
         name: this.login.name,
@@ -56,7 +58,7 @@ export class PlayerLoginComponent implements OnInit {
       })
       .subscribe(res => {
         data = res.json();
-        this._tokenService.post("player/updatePlayerData", {
+        this.http.post("player/updatePlayerData", {
           id: data.data.id,
           name: this.login.name,
           nickname: this.login.nickname,

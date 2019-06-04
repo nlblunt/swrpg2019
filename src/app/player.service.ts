@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Angular2TokenService } from 'angular2-token';
+import { AngularTokenService } from 'angular-token';
 
 @Injectable()
 export class PlayerService {
-  public _tokenService: Angular2TokenService;
+  public _tokenService: AngularTokenService;
 
-  constructor(private _tokenService2: Angular2TokenService)
+  constructor(private _tokenService2: AngularTokenService)
   {
 
   }

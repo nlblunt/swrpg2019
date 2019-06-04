@@ -1,8 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { Angular2TokenService } from "angular2-token";
+import { AngularTokenService } from "angular-token";
 import { Router } from "@angular/router";
 
 import { GmService } from "../gm.service";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: "app-gm",
@@ -15,7 +16,8 @@ export class GmComponent implements OnInit {
 
   constructor(
     public gmService: GmService,
-    private _tokenService: Angular2TokenService,
+    private _tokenService: AngularTokenService,
+    private http: HttpClient,
     private router: Router
   ) {}
 
@@ -24,7 +26,7 @@ export class GmComponent implements OnInit {
     this.loading = 0;
 
     //Check to see if this user has GM privs from server
-    this._tokenService.get("gm/gm_status").subscribe(
+    this.http.get("gm/gm_status").subscribe(
       res => {
         console.log("GM");
         this.gmPrivs = true;
@@ -36,26 +38,34 @@ export class GmComponent implements OnInit {
           .catch(res => console.log("Error"));
 
         //Get a list of all weapons
-        this.gmService
-          .getAllWeapons()
-          .then(
-            res => (this.loading = this.loading + 25),
-            error => console.log(error)
-          );
+        var result;
 
-        this.gmService
-          .getAllArmor()
-          .then(
-            res => (this.loading = this.loading + 25),
-            error => console.log(error)
-          );
+        if(result = this.gmService.getAllWeapons())
+          {
+            this.loading = this.loading + 25;
+          }
+          else
+            {
+              console.log(result);
+            }
 
-        this.gmService
-          .getAllItems()
-          .then(
-            res => (this.loading = this.loading + 25),
-            error => console.log(error)
-          );
+            if(result = this.gmService.getAllArmor())
+            {
+              this.loading = this.loading + 25;
+            }
+            else
+            {
+              console.log(result);
+            }
+
+            if(result = this.gmService.getAllItems())
+            {
+              this.loading = this.loading + 25;
+            }
+            else
+            {
+              console.log(result);
+            }
       },
       error => {
         console.log("No GM Privs");

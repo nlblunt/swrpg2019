@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Angular2TokenService } from "angular2-token";
+import { AngularTokenService } from "angular-token";
 import { Router } from "@angular/router";
 
 @Component({
@@ -11,7 +11,7 @@ export class PlayerComponent implements OnInit {
   currentPlayer: any;
 
   constructor(
-    private _tokenService: Angular2TokenService,
+    private _tokenService: AngularTokenService,
     private router: Router
   ) {
     //this._tokenService.init();

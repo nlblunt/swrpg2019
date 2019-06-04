@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 
 
-import { Angular2TokenService } from 'angular2-token'
+import { AngularTokenService } from 'angular-token'
 import { Pc } from '../models/pc';
 
 @Injectable()
@@ -15,7 +15,7 @@ export class PcSelectService
     currentUser: any;
     authHeader: Headers;
 
-    constructor(private http: Http, private _tokenService: Angular2TokenService) 
+    constructor(private http: Http, private _tokenService: AngularTokenService) 
     {
     	
         //this.currentUser = JSON.parse(localStorage.getItem('currentUser'));

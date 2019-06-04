@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 
 import { Pc } from '../models/pc';
 
-import { Angular2TokenService } from 'angular2-token';
+import { AngularTokenService } from 'angular-token';
 
 @Injectable()
 export class PcViewService
@@ -14,7 +14,7 @@ export class PcViewService
     currentUser: any;
     authHeader: Headers;
 
-    constructor(private _tokenService: Angular2TokenService) 
+    constructor(private _tokenService: AngularTokenService) 
     {
 
     }
